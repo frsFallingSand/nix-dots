@@ -130,7 +130,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "fgsd" = import ./home.nix;
+      "fgsd" = import ./home/fgsd.nix;
     };
   };
 
@@ -217,10 +217,10 @@
     eza
     microsoft-edge
     gnome-extension-manager
-    gst_all_1.gst_plugins-base
-    gst_all_1.gst_plugins-good
-    gst_all_1.gst_plugins-bad
-    gst_all_1.gst_plugins-ugly
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

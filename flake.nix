@@ -20,17 +20,30 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    # use "nixos", or your hostname as the name of the configuration
-    # it's a better practice than "default" shown in the video
+  outputs = { self, nixpkgs, ... }@inputs: 
+  let
+    system = "x86_64-linux";
+    # 自动扫描 modules 目录下的所有 .nix 文件
+    configDir = ./modules;
+    generatedModules = builtins.map (file: configDir + "/${file}") 
+      (builtins.filter (file: nixpkgs.lib.hasSuffix ".nix" file) 
+        (builtins.attrNames (builtins.readDir configDir)));
+  in
+  {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      inherit system;
+      specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
-      ];
+      ] ++ generatedModules; 
     };
   };
 }
