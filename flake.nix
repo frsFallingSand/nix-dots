@@ -55,20 +55,15 @@
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = true;
+            users.fgsd = ./home/fgsd.nix;
+          };
+        }
       #] ++ generatedModules; 
       ]; 
-    };
-
-    homeConfigurations = {
-      illogical_impulse = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit home_attrs 
-        #nixgl
-        quickshell; };
-        modules = [ 
-          ./home/ii.nix
-        ];
-      };
     };
   };
 }
