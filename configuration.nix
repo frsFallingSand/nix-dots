@@ -129,6 +129,8 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
     users = {
       "fgsd" = import ./home/fgsd.nix;
     };

@@ -66,7 +66,7 @@
         #nixgl
         quickshell; };
         modules = [ 
-          ./home.nix
+          ./home/ii.nix
         ];
       };
     };
