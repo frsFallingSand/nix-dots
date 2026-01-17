@@ -215,7 +215,7 @@
 
     ### illogical-impulse-quickshell-git
     #(config.lib.nixGL.wrap quickshell.packages.x86_64-linux.default)
-    (import ../modules/quickshell.nix { inherit pkgs quickshell; 
+    (import ./quickshell.nix { inherit pkgs quickshell;
     #nixGLWrap = config.lib.nixGL.wrap;
     })
     ];
