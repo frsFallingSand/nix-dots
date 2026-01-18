@@ -77,6 +77,7 @@
 
   console = {
     font = "Lat2-Terminus16";
+    # font = "noto-fonts";
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
@@ -226,6 +227,8 @@
     btop
     typescript
     devbox
+    lazygit
+    noto-fonts
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
