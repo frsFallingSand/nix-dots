@@ -12,6 +12,16 @@
     withBuildTools = true;
   };
 
+  programs.git = {
+    enable = true;
+    userName = "frsFallingSand";
+    userEmail = "frsfallingsand@outlook.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull.rebase = true;
+    };
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fgsd";

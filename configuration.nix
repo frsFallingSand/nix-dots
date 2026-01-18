@@ -14,6 +14,8 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+  boot.kernelModules = [ "fuse" ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -31,6 +33,12 @@
     device = "/swapfile";
     size = 16 * 1024;
   }];
+
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 14d";
+    dates = "weekly";
+  };
 
   services.libinput.touchpad.naturalScrolling = true;
 
@@ -77,7 +85,6 @@
 
   console = {
     font = "Lat2-Terminus16";
-    # font = "noto-fonts";
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
@@ -177,7 +184,6 @@
     };
 
     enableSystemMonitoring = true;
-    enableClipboard = true;
     enableVPN = true;
     enableDynamicTheming = true;
     enableAudioWavelength = true;
@@ -229,6 +235,8 @@
     devbox
     lazygit
     noto-fonts
+    noto-fonts-cjk-sans
+    onlyoffice-desktopeditors
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

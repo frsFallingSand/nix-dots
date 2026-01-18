@@ -89,18 +89,18 @@
       ### illogical-impulse-fonts-themes
       adw-gtk3 #adw-gtk-theme-git
       kdePackages.breeze kdePackages.breeze-icons #breeze
-      #breeze-plus (TODO: Not available as nixpkg)
+      # breeze-plus # (TODO: Not available as nixpkg)
       darkly darkly-qt5 #darkly-bin
       eza #eza
       #fish (Currently install via system PM; TODO: should install via nix in future when authentication problem fixed)
       fontconfig #fontconfig
       kitty #kitty (Used in fuzzel, Hyprland, kdeglobals and Quickshell config; kitty config is also included as dots)
       matugen #matugen-bin (Used in Quickshell)
-      #otf-space-grotesk (TODO: Not available as Nixpkg)
+      # otf-space-grotesk # (TODO: Not available as Nixpkg)
       starship #starship
       nerd-fonts.jetbrains-mono #ttf-jetbrains-mono-nerd
       material-symbols #ttf-material-symbols-variable-git
-      #ttf-readex-pro (TODO: seems not available as nixpkg)
+      #ttf-readex-pro # (TODO: seems not available as nixpkg)
       rubik #ttf-rubik-vf
       twemoji-color-font #ttf-twemoji
 
@@ -137,7 +137,7 @@
 
 
       ### illogical-impulse-python
-      #clang (Not needed for Nix. However, when cmake is installed by Nix, then pkg-config, cairo etc will be used but they can only be accessible in Nix development environment for example nix-shell, nix develop, etc. See `sdata/uv/shell.nix`. )
+      clang # (Not needed for Nix. However, when cmake is installed by Nix, then pkg-config, cairo etc will be used but they can only be accessible in Nix development environment for example nix-shell, nix develop, etc. See `sdata/uv/shell.nix`. )
       uv #uv
       gtk4 #gtk4
       libadwaita #libadwaita
