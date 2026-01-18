@@ -2,13 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, dmsNixOSModule, dmsDefaultPkg, quickshellPkg, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.dms.nixosModules.default
+      dmsNixOSModule
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -127,15 +127,6 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users = {
-      "fgsd" = import ./home/fgsd.nix;
-    };
-  };
-
   programs.firefox.enable = true;
 
   programs.steam = {
@@ -164,24 +155,20 @@
     withUWSM = false;
     xwayland.enable = true;
   };
-  # programs.neovim.enable = true;
-  # programs.neovim.nvimdots = {
-  #   enable = true;
-  #  setBuildEnv = true;
-  #   withBuildTools = true;
-  # };
-  # programs.dotnet.enable = true;
-  # programs.dotnet.dev = {
-  #   enabled = true;
+
+  #programs.dotnet.dev = {
+  #  enabled = true;
   #  environmentVariables = {
-  #     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "0";  # Will set environment variables for DotNET.
-  #  };
+  #    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "0";  # Will set environment variables for DotNET.
   # };
+  #};
+
+  programs.java.enable = true;
 
   programs.dms-shell = {
     enable = true;
 
-    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+    quickshell.package = quickshellPkg;
 
     systemd = {
       enable = true;
@@ -224,7 +211,7 @@
     fish
     starship
     hyprland
-    inputs.dms.packages.${pkgs.system}.default
+    dmsDefaultPkg
     kitty
     eza
     microsoft-edge
@@ -237,6 +224,8 @@
     ntfs3g
     tmux
     btop
+    typescript
+    devbox
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
