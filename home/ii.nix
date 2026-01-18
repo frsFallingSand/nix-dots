@@ -1,9 +1,9 @@
 { config, lib, pkgs, quickshell, ... }:
 {
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 
   # Necessary for non-NixOS to handle GPU (since home-manager version 25.11)
-  targets.genericLinux.enable = true;
+  # targets.genericLinux.enable = true;
   #nixGL.packages = nixgl.packages;
   #nixGL.defaultWrapper = "mesa";
 
@@ -183,5 +183,5 @@
     #nixGLWrap = config.lib.nixGL.wrap;
     })
     ];
-  }//home_attrs;
+  };
 }

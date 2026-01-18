@@ -3,6 +3,7 @@
 {
   imports = [
     nvimdotsHMModule
+    ./ii.nix
   ];
 
   programs.neovim.nvimdots = {

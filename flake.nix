@@ -45,7 +45,7 @@
     quickshellPkg = quickshell.packages.${system}.quickshell;
     dmsDefaultPkg = inputs.dms.packages.${system}.default;
     hmSpecialArgs = {
-      inherit nvimdotsHMModule;
+      inherit nvimdotsHMModule quickshell;
     };
 
   in
@@ -63,6 +63,7 @@
             useGlobalPkgs = true;
             extraSpecialArgs = hmSpecialArgs;
             users.fgsd = ./home/fgsd.nix;
+            # _module.args.quickshell = inputs.quickshell;
           };
         }
       #] ++ generatedModules; 
