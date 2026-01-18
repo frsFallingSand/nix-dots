@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, nvimdotsHMModule, ... }:
 
 {
   imports = [
-    inputs.nvimdots.homeManagerModules.default
+    nvimdotsHMModule
   ];
 
   programs.neovim.nvimdots = {

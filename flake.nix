@@ -27,7 +27,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, quickshell, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, quickshell, nvimdots, ... }@inputs: 
   let
     system = "x86_64-linux";
     # 自动扫描 modules 目录下的所有 .nix 文件
@@ -36,22 +36,24 @@
     #  (builtins.filter (file: nixpkgs.lib.hasSuffix ".nix" file) 
     #    (builtins.attrNames (builtins.readDir configDir)));
 
-    home_attrs = rec {
-      username = import ./username.nix;
-      homeDirectory = "/home/${username}";
-      # Do not edit stateVersion value, see https://github.com/nix-community/home-manager/issues/5794
-      stateVersion = "25.05";
-    };
-    lib = nixpkgs.lib;
+    #lib = nixpkgs.lib;
     pkgs = import nixpkgs {
       inherit system;
+    };
+    dmsNixOSModule = inputs.dms.nixosModules.default;
+    nvimdotsHMModule = nvimdots.homeManagerModules.default;
+    quickshellPkg = quickshell.packages.${system}.quickshell;
+    dmsDefaultPkg = inputs.dms.packages.${system}.default;
+    hmSpecialArgs = {
+      inherit nvimdotsHMModule;
     };
 
   in
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs quickshell; };
+      #specialArgs = { inherit inputs quickshell; };
+      specialArgs = { inherit quickshell dmsNixOSModule nvimdotsHMModule quickshellPkg dmsDefaultPkg; };
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
@@ -59,6 +61,7 @@
           home-manager = {
             useUserPackages = true;
             useGlobalPkgs = true;
+            extraSpecialArgs = hmSpecialArgs;
             users.fgsd = ./home/fgsd.nix;
           };
         }

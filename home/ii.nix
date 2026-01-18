@@ -1,6 +1,4 @@
-{ config, lib, pkgs, 
-#nixgl, 
-quickshell, home_attrs, ... }:
+{ config, lib, pkgs, quickshell, ... }:
 {
   programs.home-manager.enable = true;
 
