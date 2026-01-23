@@ -22,11 +22,13 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+    powerManagement.enable = true; #休眠后唤醒不会花屏
+    powerManagement.finegrained = false;
     open = true;
-    # prime = {
-    #   sync.enable = true;
-    #   nvidiaBusId = "PCI:1:0:0";
-    # };
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   swapDevices = [{
@@ -45,8 +47,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.modesetting.enable = true;
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   networking.hostName = "qqxnkrut"; # Define your hostname.
 
@@ -79,8 +79,14 @@
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-rime
+      fcitx5-lua
+      fcitx5-gtk
+      fcitx5-nord                       
+      fcitx5-pinyin-zhwiki             
       qt6Packages.fcitx5-chinese-addons
+      qt6Packages.fcitx5-configtool
     ];
+    fcitx5.waylandFrontend = true;
   };
 
   console = {
@@ -237,7 +243,80 @@
     noto-fonts
     noto-fonts-cjk-sans
     onlyoffice-desktopeditors
+    appimage-run
+    nerdfetch
+    nerd-fonts.noto
+    bibata-cursors
+    tree
+    starship
+    helix
+    cmatrix
+    obsidian
+    yazi
+    bat
+    lsd
+    obs-studio
+    wireguard-tools
+
   ];
+
+environment.variables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";  
+  };
+
+  fonts = {
+    fontDir.enable = true; # 启用旧版字体路径兼容
+    packages = with pkgs; [
+      cascadia-code
+      noto-fonts 
+      noto-fonts-cjk-sans    # 思源黑体
+      noto-fonts-cjk-serif   # 思源宋体
+      noto-fonts-color-emoji
+      source-han-sans        # 思源黑体
+      nerd-fonts.noto
+      nerd-fonts.jetbrains-mono
+    ];
+    
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
+        serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
+        monospace = [ "Cascadia Code" "Noto Sans Mono CJK SC" ];
+      };
+    };
+  };
+
+
+  services.flatpak.enable = true;
+
+  # GNOME Software 配置（备用）
+  # environment.systemPackages = with pkgs; [
+  #   gnome-software
+  # ];
+
+  # 国内 Flatpak 镜像源配置
+  systemd.services.configure-flatpak-repo = {
+    description = "Configure Flatpak Domestic Mirrors";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      # === 选项 A: 上海交通大学 (SJTU) - 推荐 ===
+      flatpak remote-add --if-not-exists flathub https://mirror.sjtu.edu.cn/flathub/flathub.flatpakrepo
+      flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub/
+
+      # === 选项 B: 中国科学技术大学 (USTC) - 备用 ===
+      # flatpak remote-add --if-not-exists flathub https://mirrors.ustc.edu.cn/flathub/flathub.flatpakrepo
+      # flatpak remote-modify flathub --url=https://mirrors.ustc.edu.cn/flathub/
+
+      # 强制刷新元数据，确保 GNOME Software 搜索结果及时更新
+      flatpak update --appstream
+    '';
+  };
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
