@@ -292,6 +292,8 @@
     nvtopPackages.full
     kdePackages.kdenlive
     ncdu
+    splayer
+    go-musicfox
   ];
 
 
