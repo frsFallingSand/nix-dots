@@ -279,6 +279,16 @@
     spice-protocol # SPICE protocol headers
     virglrenderer # Virtual GPU support
     mesa # OpenGL support for VMs
+    ffmpeg
+    qq
+    wechat
+    waylyrics
+    protonplus
+    lutris
+    # umu-launcher
+    wine
+    imagemagick
+    grim
   ];
 
 
