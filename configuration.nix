@@ -15,7 +15,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernelModules = [ "fuse" ];
+  boot.kernelModules = [ "fuse" "kvm-amd" "kvm-intel" "vfio-pci" ];
+
+  boot.kernelParams = [
+    "intel_iommu=on"
+    "iommu=pt"
+  ];
+  systemd.tmpfiles.rules = [
+    "d /var/lib/libvirt/isos 0755 qemu-libvirtd kvm -"
+    "d /var/lib/libvirt/images 0755 qemu-libvirtd kvm -"
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -81,8 +90,8 @@
       fcitx5-rime
       fcitx5-lua
       fcitx5-gtk
-      fcitx5-nord                       
-      fcitx5-pinyin-zhwiki             
+      fcitx5-nord
+      fcitx5-pinyin-zhwiki
       qt6Packages.fcitx5-chinese-addons
       qt6Packages.fcitx5-configtool
     ];
@@ -257,10 +266,61 @@
     lsd
     obs-studio
     wireguard-tools
-
+    virt-viewer # View Virtual Machines
+    lazydocker
+    docker-client
+    qemu_kvm # KVM support
+    OVMF # UEFI firmware
+    swtpm # TPM emulation
+    libguestfs # VM disk tools
+    virt-top # Monitor VM performance
+    spice # SPICE protocol support
+    spice-gtk # SPICE client GTK
+    spice-protocol # SPICE protocol headers
+    virglrenderer # Virtual GPU support
+    mesa # OpenGL support for VMs
   ];
 
-environment.variables = {
+
+  programs.virt-manager.enable = true;
+  programs.dconf.enable = true;
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+
+    podman.enable = false;
+
+    libvirtd = {
+      enable = true;
+      onBoot = "start";
+      onShutdown = "shutdown";
+      qemu = {
+        runAsRoot = false;
+        # ovmf submodule REMOVED: All OVMF images are now available by default in nixpkgs-unstable
+        swtpm.enable = true; # TPM emulation
+        vhostUserPackages = with pkgs; [ virtiofsd ];
+
+        verbatimConfig = ''
+          user = "qemu-libvirtd"
+          group = "kvm"
+          dynamic_ownership = 1
+          remember_owner = 0
+        '';
+      };
+      allowedBridges = [
+        "virbr0" # Default NAT bridge
+        "br0" # Custom bridge if needed
+      ];
+    };
+
+    # Kernel modules for better VM performance
+    spiceUSBRedirection.enable = true;
+  };
+
+
+  environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";  
   };
