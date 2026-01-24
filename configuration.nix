@@ -288,6 +288,9 @@
     wine
     imagemagick
     grim
+    nvtopPackages.full
+    kdePackages.kdenlive
+    ncdu
   ];
 
 
