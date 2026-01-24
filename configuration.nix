@@ -293,6 +293,8 @@
     ncdu
     splayer
     go-musicfox
+    scrcpy
+    libxshmfence
   ];
 
 
