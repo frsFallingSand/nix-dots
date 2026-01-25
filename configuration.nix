@@ -296,8 +296,48 @@
     go-musicfox
     scrcpy
     libxshmfence
+    osu-lazer-bin
+    jetbrains.idea
+    vscode
+    kotlin
+    kotlin-native
+    rustup
+    go
+    dotnet-sdk_9
+    nodejs_20
+    gradle_9
+    maven
+    easyeffects
+    vlc
+    krita
+    timeshift
+    grim
+    btrfs-progs
+    zram-generator
+    flameshot
+    fzf
+    ripgrep
+    fd
+    zoxide
+    tealdeer
+    bottom
+    vmware-workstation
+    vmfs-tools
+    (ovftool.override { acceptBroadcomEula = true; })
+    kubernetes
+    kubernetes-kcp
+    kubernetes-helm
+    linuxKernel.packages.linux_6_12.vmware
+    telegram-desktop
+    discord
+    element-desktop
+    texliveFull
+    pandoc
+    bitwarden-desktop
+    protontricks
   ];
 
+  #programs.ovftool.override.acceptBroadcomEula = true;
 
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
