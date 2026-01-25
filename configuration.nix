@@ -17,6 +17,9 @@
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernelModules = [ "fuse" "kvm-amd" "kvm-intel" "vfio-pci" ];
 
+  virtualisation.vmware.host.enable = true;
+  virtualisation.vmware.guest.enable = true;
+
   boot.kernelParams = [
     "intel_iommu=on"
     "iommu=pt"
@@ -323,11 +326,11 @@
     bottom
     vmware-workstation
     vmfs-tools
-    (ovftool.override { acceptBroadcomEula = true; })
+    # (ovftool.override { acceptBroadcomEula = true; })
     kubernetes
     kubernetes-kcp
     kubernetes-helm
-    linuxKernel.packages.linux_6_12.vmware
+    # linuxKernel.packages.linux_6_12.vmware
     telegram-desktop
     discord
     element-desktop
@@ -335,9 +338,10 @@
     pandoc
     bitwarden-desktop
     protontricks
+    rustdesk
+    rustdesk-server
+    hmcl
   ];
-
-  #programs.ovftool.override.acceptBroadcomEula = true;
 
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
