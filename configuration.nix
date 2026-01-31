@@ -292,7 +292,7 @@
     imagemagick
     grim
     nvtopPackages.full
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     ncdu
     splayer
     go-musicfox
@@ -340,6 +340,7 @@
     rustdesk
     rustdesk-server
     hmcl
+    pnpm
   ];
 
   programs.virt-manager.enable = true;
