@@ -347,6 +347,8 @@
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
 
+  programs.obs-studio.enableVirtualCamera = true;
+
   virtualisation = {
     docker = {
       enable = true;
