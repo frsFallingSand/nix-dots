@@ -341,6 +341,7 @@
     rustdesk-server
     hmcl
     pnpm
+    wemeet
   ];
 
   programs.virt-manager.enable = true;
