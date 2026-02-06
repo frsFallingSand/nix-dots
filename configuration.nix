@@ -294,7 +294,7 @@
     imagemagick
     grim
     nvtopPackages.full
-    # kdePackages.kdenlive
+    kdePackages.kdenlive
     ncdu
     splayer
     go-musicfox
