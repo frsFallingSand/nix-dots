@@ -107,7 +107,7 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  networking.nameservers = [ "223.5.5.5" ];
+  networking.nameservers = [ "192.168.0.99" "223.5.5.5" ];
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
