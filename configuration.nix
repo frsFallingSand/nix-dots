@@ -347,6 +347,7 @@
     wemeet
     linux-wallpaperengine
     # mathematica
+    android-tools
   ];
 
   programs.virt-manager.enable = true;
