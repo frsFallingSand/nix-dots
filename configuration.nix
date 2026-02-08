@@ -152,7 +152,6 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "qemu" "kvm" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      # tree
     ];
   };
 
