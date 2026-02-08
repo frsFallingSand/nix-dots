@@ -350,7 +350,15 @@
     # mathematica
     android-tools
     remmina
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
   ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    # 移除 gtk/kde 后端避免冲突
+  };
 
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
