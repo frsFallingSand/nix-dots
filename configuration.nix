@@ -349,6 +349,7 @@
     linux-wallpaperengine
     # mathematica
     android-tools
+    remmina
   ];
 
   programs.virt-manager.enable = true;
