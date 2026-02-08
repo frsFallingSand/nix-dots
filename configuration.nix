@@ -153,7 +153,6 @@
     hashedPassword = "$y$j9T$OQC4oxFwRxZHzxbTGfcEs1$T/U9MAfe90lViXxkKsMonRjb3mAU8uXmS.64iTXTNh7";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "qemu" "kvm" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      # tree
     ];
   };
 
