@@ -108,6 +108,8 @@
   };
 
   networking.nameservers = [ "192.168.0.99" "223.5.5.5" ];
+  # networking.networkmanager.dns = "systemd-resolved";
+  networking.networkmanager.insertNameservers = [ "192.168.0.99" "223.5.5.5" ];
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
