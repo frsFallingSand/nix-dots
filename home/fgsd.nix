@@ -24,61 +24,82 @@
     };
   };
   # configure options
-  programs.noctalia-shell = {
-    enable = true;
-    settings = {
-      # configure noctalia here
-      bar = {
-        density = "compact";
-        position = "top";
-        showCapsule = false;
-        widgets = {
-          left = [
-            {
-              id = "ControlCenter";
-              useDistroLogo = true;
-            }
-            {
-              id = "Network";
-            }
-            {
-              id = "Bluetooth";
-            }
-          ];
-          center = [
-            {
-              hideUnoccupied = false;
-              id = "Workspace";
-              labelMode = "none";
-            }
-          ];
-          right = [
-            {
-              alwaysShowPercentage = false;
-              id = "Battery";
-              warningThreshold = 30;
-            }
-            {
-              formatHorizontal = "HH:mm";
-              formatVertical = "HH mm";
-              id = "Clock";
-              useMonospacedFont = true;
-              usePrimaryColor = true;
-            }
-          ];
-        };
-      };
-      colorSchemes.predefinedScheme = "Monochrome";
-      general = {
-        avatarImage = "/home/fgsd/.face.jpg";
-        radiusRatio = 0.2;
-      };
-      location = {
-        monthBeforeDay = true;
-        name = "Foshan, Guangdong, China";
+  programs.noctalia-shell.enable = true;
+  programs.noctalia-shell.settings = {
+    bar = {
+      widgets = {
+        left = [
+          { id = "Launcher"; }
+          { id = "Workspace"; }
+        ];
+        center = [
+          { id = "Clock"; }
+        ];
+        right = [
+          { id = "Tray"; }
+          {
+            id = "CustomButton";
+            icon = "wifi";
+            textCommand = "/home/fgsd/.local/bin/noctalia-net-status";
+            parseJson = true;
+            textIntervalMs = 5000;
+            maxTextLength = {
+              horizontal = 8;
+              vertical = 8;
+            };
+          }
+          {
+            id = "CustomButton";
+            icon = "bluetooth";
+            textCommand = "/home/fgsd/.local/bin/noctalia-bluetooth";
+            leftClickExec = "/home/fgsd/.local/bin/niri-run blueman-manager";
+            parseJson = true;
+            textIntervalMs = 5000;
+            maxTextLength = {
+              horizontal = 4;
+              vertical = 4;
+            };
+          }
+          { id = "Volume"; }
+          { id = "Brightness"; }
+          { id = "Battery"; }
+          {
+            id = "CustomButton";
+            icon = "gpu";
+            textCommand = "/home/fgsd/.local/bin/noctalia-gpu-mode";
+            leftClickExec = "/home/fgsd/.local/bin/noctalia-gpu-mode --menu";
+            leftClickUpdateText = true;
+            parseJson = true;
+            textIntervalMs = 5000;
+            maxTextLength = {
+              horizontal = 10;
+              vertical = 10;
+            };
+          }
+          {
+            id = "CustomButton";
+            icon = "shield";
+            textCommand = "/home/fgsd/.local/bin/noctalia-proxy-status";
+            parseJson = true;
+            textIntervalMs = 5000;
+            maxTextLength = {
+              horizontal = 6;
+              vertical = 6;
+            };
+          }
+          {
+            id = "CustomButton";
+            icon = "power";
+            textCommand = "/home/fgsd/.local/bin/noctalia-power";
+            leftClickExec = "niri msg action quit";
+            parseJson = true;
+            textIntervalMs = 60000;
+          }
+          { id = "NotificationHistory"; }
+          { id = "ControlCenter"; }
+        ];
       };
     };
-    # this may also be a string or a path to a JSON file.
   };
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -102,6 +123,13 @@
     XDG_DATA_HOME = "/home/fgsd/.local/share";
     XDG_CACHE_HOME = "/home/fgsd/.cache";
     XDG_STATE_HOME = "/home/fgsd/.local/state";
+
+    # From End4's hyprland dotfiles
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "kde";
+    XDG_MENU_PREFIX = "plasma-";
+    TERMINAL = "kitty -1";
   };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
