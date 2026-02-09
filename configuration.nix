@@ -351,6 +351,7 @@
     remmina
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
+    yazi
   ];
 
   xdg.portal = {
