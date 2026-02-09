@@ -16,6 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
   boot.kernelModules = [ "fuse" "kvm-amd" "kvm-intel" "vfio-pci" ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   virtualisation.vmware.host.enable = true;
   virtualisation.vmware.guest.enable = true;
@@ -23,6 +24,7 @@
   boot.kernelParams = [
     "intel_iommu=on"
     "iommu=pt"
+    "loglevel=7"
   ];
   systemd.tmpfiles.rules = [
     "d /var/lib/libvirt/isos 0755 qemu-libvirtd kvm -"
@@ -163,7 +165,7 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
+   };
 
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
@@ -351,13 +353,26 @@
     android-tools
     remmina
     xdg-desktop-portal
-    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
     yazi
+    zenity
   ];
+
+  zramSwap = {
+    enable = true;
+    priority = 100;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common = {
+      default = [
+        "gtk"
+      ];
+    };
     # 移除 gtk/kde 后端避免冲突
   };
 
