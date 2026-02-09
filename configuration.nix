@@ -358,6 +358,7 @@
     zenity
     nP
     affine
+    kdePackages.kirigami
   ];
 
   services.power-profiles-daemon.enable = true;
