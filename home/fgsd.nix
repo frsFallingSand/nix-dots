@@ -4,6 +4,7 @@
   imports = [
     nvimdotsHMModule
     ./ii.nix
+    ./scripts.nix
     nHMM
   ];
 
