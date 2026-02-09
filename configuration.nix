@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, dmsNixOSModule, dmsDefaultPkg, quickshellPkg, ... }:
+{ config, lib, pkgs, dmsNixOSModule, dmsDefaultPkg, quickshellPkg, nP, ... }:
 
 {
   imports =
@@ -196,7 +196,7 @@
   programs.java.enable = true;
 
   programs.dms-shell = {
-    enable = true;
+    enable = false;
 
     quickshell.package = quickshellPkg;
 
@@ -353,9 +353,13 @@
     remmina
     xdg-desktop-portal
     xdg-desktop-portal-gtk
-    yazi
     zenity
+    nP
+    affine
   ];
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   zramSwap = {
     enable = true;
@@ -378,6 +382,7 @@
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
 
+  programs.obs-studio.enable = true;
   programs.obs-studio.enableVirtualCamera = true;
 
   virtualisation = {

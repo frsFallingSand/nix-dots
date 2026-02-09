@@ -1,9 +1,10 @@
-{ config, pkgs, nvimdotsHMModule, ... }:
+{ config, pkgs, nvimdotsHMModule, nHMM, ... }:
 
 {
   imports = [
     nvimdotsHMModule
     ./ii.nix
+    nHMM
   ];
 
   programs.neovim.nvimdots = {
@@ -20,6 +21,63 @@
       init.defaultBranch = "main";
       pull.rebase = true;
     };
+  };
+  # configure options
+  programs.noctalia-shell = {
+    enable = true;
+    settings = {
+      # configure noctalia here
+      bar = {
+        density = "compact";
+        position = "right";
+        showCapsule = false;
+        widgets = {
+          left = [
+            {
+              id = "ControlCenter";
+              useDistroLogo = true;
+            }
+            {
+              id = "Network";
+            }
+            {
+              id = "Bluetooth";
+            }
+          ];
+          center = [
+            {
+              hideUnoccupied = false;
+              id = "Workspace";
+              labelMode = "none";
+            }
+          ];
+          right = [
+            {
+              alwaysShowPercentage = false;
+              id = "Battery";
+              warningThreshold = 30;
+            }
+            {
+              formatHorizontal = "HH:mm";
+              formatVertical = "HH mm";
+              id = "Clock";
+              useMonospacedFont = true;
+              usePrimaryColor = true;
+            }
+          ];
+        };
+      };
+      colorSchemes.predefinedScheme = "Monochrome";
+      general = {
+        avatarImage = "/home/fgsd/.face.jpg";
+        radiusRatio = 0.2;
+      };
+      location = {
+        monthBeforeDay = true;
+        name = "Foshan, Guangdong, China";
+      };
+    };
+    # this may also be a string or a path to a JSON file.
   };
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -39,6 +97,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+#    (pkgs.python3.withPackages (ps: with ps; [ ps.pros-cli ]))
+#    pkgs.gcc-arm-embedded
+#    pkgs.openocd  # 用于调试
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
