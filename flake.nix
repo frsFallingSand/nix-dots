@@ -44,8 +44,10 @@
     nvimdotsHMModule = nvimdots.homeManagerModules.default;
     quickshellPkg = quickshell.packages.${system}.quickshell;
     dmsDefaultPkg = inputs.dms.packages.${system}.default;
+    nHMM = inputs.noctalia.homeModules.default;
+    nP = inputs.noctalia.packages.${system}.default;
     hmSpecialArgs = {
-      inherit nvimdotsHMModule quickshell;
+      inherit nvimdotsHMModule quickshell nHMM;
     };
 
   in
@@ -53,7 +55,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
       #specialArgs = { inherit inputs quickshell; };
-      specialArgs = { inherit quickshell dmsNixOSModule nvimdotsHMModule quickshellPkg dmsDefaultPkg; };
+      specialArgs = { inherit quickshell dmsNixOSModule nvimdotsHMModule quickshellPkg dmsDefaultPkg nP; };
       modules = [
         ./configuration.nix
         inputs.home-manager.nixosModules.default
