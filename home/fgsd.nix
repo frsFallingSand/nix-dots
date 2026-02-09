@@ -85,6 +85,23 @@
   home.username = "fgsd";
   home.homeDirectory = "/home/fgsd";
 
+  home.sessionVariables = {
+   # Wayland 优化与输入法环境变量
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    XIM_SERVERS = "fcitx";
+    # 修复 fcitx5 插件未被发现：让 GUI 会话能找到系统共享数据目录
+    XDG_DATA_DIRS = "/run/current-system/sw/share:/var/lib/flatpak/exports/share";
+    XDG_CONFIG_HOME = "/home/fgsd/.config";
+    XDG_DATA_HOME = "/home/fgsd/.local/share";
+    XDG_CACHE_HOME = "/home/fgsd/.cache";
+    XDG_STATE_HOME = "/home/fgsd/.local/state";
+  };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
