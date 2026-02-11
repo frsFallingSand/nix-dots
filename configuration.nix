@@ -446,7 +446,7 @@
     ];
     # From End4's hyprland dotfiles
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORM = "wayland;xcb";
     QT_QPA_PLATFORMTHEME = "kde";
     XDG_MENU_PREFIX = "plasma-";
     TERMINAL = "kitty -1";
