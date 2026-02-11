@@ -154,7 +154,8 @@
     isNormalUser = true;
     hashedPassword = "$y$j9T$OQC4oxFwRxZHzxbTGfcEs1$T/U9MAfe90lViXxkKsMonRjb3mAU8uXmS.64iTXTNh7";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "qemu" "kvm" "docker" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEfAfx9NtJjJ+5aRopDw/1WZwXPPHM8SflPIweRNPWW frsfallingsand@outlook.com"
     ];
   };
 
