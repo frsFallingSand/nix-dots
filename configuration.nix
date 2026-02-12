@@ -377,11 +377,7 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gnome];
     configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gnome];
-    # config.common = {
-    #   default = [
-    #     "gtk"
-    #   ];
-    # };
+    config.common.default = [ "wlr" ];
     # 移除 gtk/kde 后端避免冲突
   };
 
@@ -452,6 +448,12 @@
     QT_QPA_PLATFORMTHEME = "kde";
     XDG_MENU_PREFIX = "plasma-";
     TERMINAL = "kitty -1";
+
+    # From QQ Group
+    DISPLAY = ":0";
+    XDG_CURRENT_DESKTOP = "hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    GDK_BACKEND = "wayland";
   };
 
   fonts = {
