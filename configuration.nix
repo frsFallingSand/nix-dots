@@ -361,6 +361,7 @@
     nP
     affine
     kdePackages.kirigami
+    # javaPackages.compiler.openjdk17
   ];
 
   services.power-profiles-daemon.enable = true;
