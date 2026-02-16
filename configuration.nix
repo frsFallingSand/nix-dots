@@ -312,6 +312,7 @@
     vscode
     kotlin
     kotlin-native
+    kotlin-language-server
     rustup
     go
     dotnet-sdk_9
@@ -372,6 +373,8 @@
     lua-language-server
     gopls
     ruff
+    yt-dlp
+    gimp
   ];
 
   services.power-profiles-daemon.enable = true;
