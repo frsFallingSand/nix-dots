@@ -4,7 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nvimdots.url = "github:ayamir/nvimdots";
+    # nvimdots.url = "github:ayamir/nvimdots";
+    nvimdots.url = "github:frsfallingsand/nvimdots";
 
     home-manager = {
       url = "github:nix-community/home-manager";
