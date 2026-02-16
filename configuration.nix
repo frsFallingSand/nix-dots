@@ -375,6 +375,8 @@
     ruff
     yt-dlp
     gimp
+    prismlauncher
+    nss
   ];
 
   services.power-profiles-daemon.enable = true;
