@@ -316,6 +316,7 @@
     go
     dotnet-sdk_9
     nodejs_20
+    nodejs_22
     gradle_9
     maven
     easyeffects
@@ -362,6 +363,15 @@
     affine
     kdePackages.kirigami
     # javaPackages.compiler.openjdk17
+    unzip
+    python3
+    clang
+    clang-tools
+    prettier
+    lua
+    lua-language-server
+    gopls
+    ruff
   ];
 
   services.power-profiles-daemon.enable = true;
