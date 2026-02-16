@@ -313,11 +313,12 @@
     kotlin
     kotlin-native
     kotlin-language-server
+    jdt-language-server
     rustup
     go
     dotnet-sdk_9
-    nodejs_20
     nodejs_22
+    nodejs_20
     gradle_9
     maven
     easyeffects
