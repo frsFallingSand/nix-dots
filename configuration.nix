@@ -2,20 +2,33 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, dmsNixOSModule, dmsDefaultPkg, quickshellPkg, nP, ... }:
+{ config
+, lib
+, pkgs
+, dmsNixOSModule
+, dmsDefaultPkg
+, quickshellPkg
+, nP
+, ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      dmsNixOSModule
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    dmsNixOSModule
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  boot.kernelModules = [ "fuse" "kvm-amd" "kvm-intel" "vfio-pci" ];
+  boot.kernelModules = [
+    "fuse"
+    "kvm-amd"
+    "kvm-intel"
+    "vfio-pci"
+  ];
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   virtualisation.vmware.host.enable = true;
@@ -38,17 +51,19 @@
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
-    powerManagement.enable = true; #休眠后唤醒不会花屏
+    powerManagement.enable = true; # 休眠后唤醒不会花屏
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 16 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   nix.gc = {
     automatic = true;
@@ -58,7 +73,10 @@
 
   services.libinput.touchpad.naturalScrolling = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -109,9 +127,15 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  networking.nameservers = [ "192.168.0.99" "223.5.5.5" ];
+  networking.nameservers = [
+    "192.168.0.99"
+    "223.5.5.5"
+  ];
   # networking.networkmanager.dns = "systemd-resolved";
-  networking.networkmanager.insertNameservers = [ "192.168.0.99" "223.5.5.5" ];
+  networking.networkmanager.insertNameservers = [
+    "192.168.0.99"
+    "223.5.5.5"
+  ];
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -124,7 +148,6 @@
   services.desktopManager.plasma6.enable = true;
 
   environment.sessionVariables.GDK_GL = "gles";
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
@@ -153,7 +176,14 @@
   users.users.fgsd = {
     isNormalUser = true;
     hashedPassword = "$y$j9T$OQC4oxFwRxZHzxbTGfcEs1$T/U9MAfe90lViXxkKsMonRjb3mAU8uXmS.64iTXTNh7";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "qemu" "kvm" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "qemu"
+      "kvm"
+      "docker"
+    ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEfAfx9NtJjJ+5aRopDw/1WZwXPPHM8SflPIweRNPWW frsfallingsand@outlook.com"
     ];
@@ -166,7 +196,7 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-   };
+  };
 
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
@@ -219,13 +249,12 @@
   };
   security.polkit.enable = true; # polkit
   services.gnome.gnome-keyring.enable = true; # secret service
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   # programs.waybar.enable = true; # top bar
-
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  
+
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -379,6 +408,9 @@
     prismlauncher
     nss
     flite
+    gnumake
+    nixd
+    nixdoc
   ];
 
   services.power-profiles-daemon.enable = true;
@@ -393,8 +425,16 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gnome];
-    configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gnome];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gnome
+    ];
     config.common.default = [ "wlr" ];
     # 移除 gtk/kde 后端避免冲突
   };
@@ -439,10 +479,9 @@
     spiceUSBRedirection.enable = true;
   };
 
-
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
-    XCURSOR_SIZE = "24";  
+    XCURSOR_SIZE = "24";
   };
 
   environment.sessionVariables = {
@@ -478,24 +517,32 @@
     fontDir.enable = true; # 启用旧版字体路径兼容
     packages = with pkgs; [
       cascadia-code
-      noto-fonts 
-      noto-fonts-cjk-sans    # 思源黑体
-      noto-fonts-cjk-serif   # 思源宋体
+      noto-fonts
+      noto-fonts-cjk-sans # 思源黑体
+      noto-fonts-cjk-serif # 思源宋体
       noto-fonts-color-emoji
-      source-han-sans        # 思源黑体
+      source-han-sans # 思源黑体
       nerd-fonts.noto
       nerd-fonts.jetbrains-mono
     ];
-    
+
     fontconfig = {
       defaultFonts = {
-        sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
-        serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
-        monospace = [ "Cascadia Code" "Noto Sans Mono CJK SC" ];
+        sansSerif = [
+          "Noto Sans CJK SC"
+          "DejaVu Sans"
+        ];
+        serif = [
+          "Noto Serif CJK SC"
+          "DejaVu Serif"
+        ];
+        monospace = [
+          "Cascadia Code"
+          "Noto Sans Mono CJK SC"
+        ];
       };
     };
   };
-
 
   services.flatpak.enable = true;
 
@@ -524,7 +571,6 @@
       flatpak update --appstream
     '';
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -571,4 +617,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-
