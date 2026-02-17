@@ -7,9 +7,9 @@
 let
   # 将脚本包装为可执行程序（并注入依赖）
   mkScript =
-    {
-      name,
-      runtimeInputs ? [ ],
+    { name
+    , runtimeInputs ? [ ]
+    ,
     }:
     pkgs.writeShellApplication {
       inherit name runtimeInputs;

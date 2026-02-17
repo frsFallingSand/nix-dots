@@ -1,4 +1,9 @@
-{ config, pkgs, nvimdotsHMModule, nHMM, ... }:
+{ config
+, pkgs
+, nvimdotsHMModule
+, nHMM
+, ...
+}:
 
 {
   imports = [
@@ -108,7 +113,7 @@
   home.homeDirectory = "/home/fgsd";
 
   home.sessionVariables = {
-   # Wayland 优化与输入法环境变量
+    # Wayland 优化与输入法环境变量
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     GTK_IM_MODULE = "fcitx";
@@ -143,9 +148,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-#    (pkgs.python3.withPackages (ps: with ps; [ ps.pros-cli ]))
-#    pkgs.gcc-arm-embedded
-#    pkgs.openocd  # 用于调试
+    #    (pkgs.python3.withPackages (ps: with ps; [ ps.pros-cli ]))
+    #    pkgs.gcc-arm-embedded
+    #    pkgs.openocd  # 用于调试
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
