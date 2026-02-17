@@ -378,6 +378,7 @@
     gimp
     prismlauncher
     nss
+    flite
   ];
 
   services.power-profiles-daemon.enable = true;
