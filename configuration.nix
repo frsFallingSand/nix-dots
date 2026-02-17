@@ -410,6 +410,8 @@
     gnumake
     nixd
     nixdoc
+    nspr
+    cups
   ];
 
   services.power-profiles-daemon.enable = true;
