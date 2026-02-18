@@ -374,6 +374,7 @@
     discord
     element-desktop
     texliveFull
+    texlivePackages.ctex
     pandoc
     bitwarden-desktop
     protontricks
