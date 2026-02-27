@@ -272,6 +272,12 @@
     fish
     starship
     hyprland
+    hyprland-qtutils
+    hyprland-protocols
+    hyprland-workspaces
+    hyprland-activewindow
+    hyprland-qt-support
+    hyprland-workspaces-tui
     # dmsDefaultPkg
     kitty
     eza
