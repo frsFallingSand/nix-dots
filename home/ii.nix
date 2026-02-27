@@ -55,7 +55,7 @@
 
         ##### Other MISC #####
         dbus
-        xorg.xlsclients # some basic things
+        xlsclients # some basic things
         foot # Used in Quickshell and Hyprland config; its config is also included
         kdePackages.kconfig # provide kwriteconfig6, used in install script
 
