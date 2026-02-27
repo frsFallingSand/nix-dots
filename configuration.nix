@@ -414,6 +414,7 @@
     nixdoc
     nspr
     cups
+    maa-assistant-arknights
   ];
 
   services.power-profiles-daemon.enable = true;
