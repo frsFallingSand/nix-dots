@@ -352,7 +352,7 @@
     maven
     easyeffects
     vlc
-    krita
+    # krita
     timeshift
     grim
     btrfs-progs
@@ -416,6 +416,7 @@
     cups
     maa-assistant-arknights
     lmstudio
+    aria2
   ];
 
   services.power-profiles-daemon.enable = true;
