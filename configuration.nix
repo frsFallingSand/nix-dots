@@ -414,6 +414,7 @@
     nspr
     cups
     maa-assistant-arknights
+    lmstudio
   ];
 
   services.power-profiles-daemon.enable = true;
