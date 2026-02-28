@@ -279,6 +279,7 @@
     hyprland-activewindow
     hyprland-qt-support
     hyprland-workspaces-tui
+    xwayland-satellite
     # dmsDefaultPkg
     kitty
     eza
