@@ -424,6 +424,9 @@
     maa-assistant-arknights
     lmstudio
     aria2
+    # nodePackages.yun-playlist-downloader
+    # nodePackages.openclaw
+    openssl
   ];
 
   services.power-profiles-daemon.enable = true;
