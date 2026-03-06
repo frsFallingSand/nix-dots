@@ -143,6 +143,13 @@
     enable = true;
     # windowManager.qtile.enable = true;
   };
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = false;
+    xwayland.enable = true;
+  };
+
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -211,12 +218,6 @@
     ncurses
     readline
   ];
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = false;
-    xwayland.enable = true;
-  };
 
   #programs.dotnet.dev = {
   #  enabled = true;
