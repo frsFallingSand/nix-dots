@@ -60,7 +60,7 @@
 
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.qqxnkrut = nixpkgs.lib.nixosSystem {
         inherit system;
         #specialArgs = { inherit inputs quickshell; };
         specialArgs = {
