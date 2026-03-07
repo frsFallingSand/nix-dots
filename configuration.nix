@@ -46,8 +46,10 @@
   boot.kernelParams = [
     "intel_iommu=on"
     "iommu=pt"
-    "loglevel=7"
+    # "loglevel=7"
   ];
+  boot.consoleLogLevel = 7;
+
   systemd.tmpfiles.rules = [
     "d /var/lib/libvirt/isos 0755 qemu-libvirtd kvm -"
     "d /var/lib/libvirt/images 0755 qemu-libvirtd kvm -"
@@ -432,7 +434,7 @@
     nixdoc
     nspr
     cups
-    maa-assistant-arknights
+    maa-cli
     lmstudio
     aria2
     # nodePackages.yun-playlist-downloader
