@@ -430,6 +430,10 @@
     # nodePackages.yun-playlist-downloader
     # nodePackages.openclaw
     openssl
+    nixpkgs-fmt
+    nixpkgs-vet
+    nixpkgs-lint
+    nixpkgs-track
   ];
 
   services.power-profiles-daemon.enable = true;
@@ -437,6 +441,11 @@
 
   services.mihomo.tunMode = true;
 
+  programs.clash-verge = {
+    enable = true;
+    tunMode = true;
+    serviceMode = true;
+  };
   zramSwap = {
     enable = true;
     priority = 100;
