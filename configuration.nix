@@ -335,7 +335,7 @@
     waylyrics
     protonplus
     lutris
-    # umu-launcher
+    umu-launcher
     wine
     imagemagick
     grim
@@ -434,6 +434,8 @@
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+
+  services.mihomo.tunMode = true;
 
   zramSwap = {
     enable = true;
