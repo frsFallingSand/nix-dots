@@ -43,6 +43,8 @@
   virtualisation.vmware.host.enable = true;
   virtualisation.vmware.guest.enable = true;
 
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
   boot.kernelParams = [
     "intel_iommu=on"
     "iommu=pt"
