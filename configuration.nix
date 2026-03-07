@@ -446,6 +446,18 @@
     tunMode = true;
     serviceMode = true;
   };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      dates = "weekly";
+      extraArgs = "--keep 10 --keep-since 14d";
+    };
+    # 设置 NH_OS_FLAKE 变量
+    flake = "/home/admin/workspace/nix-config";
+  };
+
   zramSwap = {
     enable = true;
     priority = 100;
