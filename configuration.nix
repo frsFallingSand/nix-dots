@@ -67,7 +67,7 @@
   ];
 
   nix.gc = {
-    automatic = true;
+    automatic = false;
     options = "--delete-older-than 14d";
     dates = "weekly";
   };
