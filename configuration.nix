@@ -23,7 +23,15 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = lib.mkForce [
+    "btrfs"
+    "reiserfs"
+    "vfat"
+    "f2fs"
+    "xfs"
+    "ntfs"
+    "cifs"
+  ];
   boot.kernelModules = [
     "fuse"
     "kvm-amd"
