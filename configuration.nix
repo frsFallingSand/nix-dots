@@ -362,7 +362,7 @@
     maven
     easyeffects
     vlc
-    # krita
+    krita
     timeshift
     grim
     btrfs-progs
