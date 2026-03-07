@@ -445,6 +445,7 @@
     nixpkgs-vet
     nixpkgs-lint
     nixpkgs-track
+    winetricks
   ];
 
   services.power-profiles-daemon.enable = true;
