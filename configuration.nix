@@ -2,14 +2,15 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config
-, lib
-, pkgs
-, dmsNixOSModule
-, dmsDefaultPkg
-, quickshellPkg
-, nP
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  dmsNixOSModule,
+  dmsDefaultPkg,
+  quickshellPkg,
+  nP,
+  ...
 }:
 
 {
@@ -151,6 +152,7 @@
   };
 
   services.displayManager.gdm.enable = true;
+  services.displayManager.defaultSession = "Hyprland";
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 
