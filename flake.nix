@@ -13,7 +13,8 @@
     };
 
     quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      # url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -29,12 +30,13 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , quickshell
-    , nvimdots
-    , ...
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      quickshell,
+      nvimdots,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
