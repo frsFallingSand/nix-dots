@@ -446,6 +446,8 @@
     nixpkgs-lint
     nixpkgs-track
     winetricks
+    cloudflare-warp
+    cloudflared
   ];
 
   services.power-profiles-daemon.enable = true;
