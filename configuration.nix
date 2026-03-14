@@ -41,6 +41,11 @@
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   virtualisation.vmware.host.enable = true;
+  virtualisation.vmware.host.extraPackages = with pkgs; [
+    libaio
+    pcsclite
+    linuxKernel.packages.linux_zen.vmware
+  ];
   virtualisation.vmware.guest.enable = true;
 
   services.logind.settings.Login.HandlePowerKey = "ignore";
@@ -231,6 +236,7 @@
     libffi
     ncurses
     readline
+    alsa-lib
   ];
 
   #programs.dotnet.dev = {
