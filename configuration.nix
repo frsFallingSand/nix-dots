@@ -454,6 +454,7 @@
     winetricks
     cloudflare-warp
     cloudflared
+    gcc-arm-embedded
   ];
 
   services.power-profiles-daemon.enable = true;
