@@ -456,6 +456,8 @@
     cloudflare-warp
     cloudflared
     gcc-arm-embedded
+    bear
+    gcc
   ];
 
   services.power-profiles-daemon.enable = true;
