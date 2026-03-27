@@ -476,7 +476,7 @@
     clean = {
       enable = true;
       dates = "weekly";
-      extraArgs = "--keep 10 --keep-since 14d";
+      extraArgs = "--keep 20 --keep-since 42d";
     };
     # 设置 NH_OS_FLAKE 变量
     flake = "/home/admin/workspace/nix-config";
