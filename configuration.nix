@@ -471,6 +471,11 @@
     serviceMode = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.nh = {
     enable = true;
     clean = {
