@@ -479,7 +479,7 @@
   programs.nh = {
     enable = true;
     clean = {
-      enable = true;
+      enable = false;
       dates = "weekly";
       extraArgs = "--keep 20 --keep-since 42d";
     };
