@@ -459,6 +459,8 @@
     gcc
     zim
     zim-tools
+    kiwix
+    kiwix-tools
   ];
 
   services.power-profiles-daemon.enable = true;
