@@ -458,6 +458,8 @@
     gcc-arm-embedded
     bear
     gcc
+    zim
+    zim-tools
   ];
 
   services.power-profiles-daemon.enable = true;
