@@ -32,10 +32,7 @@
 
   wayland.windowManager.hyprland = {
     ## Make sure home-manager not generate ~/.config/hypr/hyprland.conf
-    systemd.enable = false;
-    plugins = [ ];
-    settings = { };
-    extraConfig = "";
+    systemd.enable = false; plugins = []; settings = {}; extraConfig = "";
     enable = true;
     ## Use NixGL
     #package = config.lib.nixGL.wrap pkgs.hyprland;
