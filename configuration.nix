@@ -462,6 +462,8 @@
     zim-tools
     kiwix
     kiwix-tools
+    flameshot
+    shutter
   ];
 
   services.power-profiles-daemon.enable = true;
