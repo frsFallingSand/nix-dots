@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-nvim = {
+      url = "github:nixos/nixpkgs?rev=c9d8364bfd32485312562fe6ee21859a78b86625";
+      flake = false;
+    };
 
     # nvimdots.url = "github:ayamir/nvimdots";
     nvimdots.url = "github:frsfallingsand/nvimdots";
@@ -33,6 +37,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-nvim,
       home-manager,
       quickshell,
       nvimdots,
@@ -50,6 +55,11 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+      pkgs-nvim = import nixpkgs-nvim {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      nvim = pkgs-nvim.neovim-unwrapped;
       dmsNixOSModule = inputs.dms.nixosModules.default;
       nvimdotsHMModule = nvimdots.homeManagerModules.default;
       quickshellPkg = quickshell.packages.${system}.quickshell;
@@ -57,7 +67,12 @@
       nHMM = inputs.noctalia.homeModules.default;
       nP = inputs.noctalia.packages.${system}.default;
       hmSpecialArgs = {
-        inherit nvimdotsHMModule quickshell nHMM;
+        inherit
+          nvimdotsHMModule
+          quickshell
+          nHMM
+          nvim
+          ;
       };
 
     in
@@ -73,6 +88,7 @@
             quickshellPkg
             dmsDefaultPkg
             nP
+            nvim
             ;
         };
         modules = [
