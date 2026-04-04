@@ -185,6 +185,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.cups-pdf-to-pdf ];
 
   # Enable sound.
   services.pulseaudio.enable = false;
@@ -466,6 +467,7 @@
       kiwix-tools
       flameshot
       shutter
+      cups-pdf-to-pdf
     ]
     ++ [ nvim ];
 
