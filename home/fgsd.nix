@@ -22,7 +22,7 @@
 
   programs.neovim.nvimdots = {
     enable = true;
-    setBuildEnv = true;
+    setBuildEnv = false;
     withBuildTools = true;
   };
 
