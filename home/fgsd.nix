@@ -1,8 +1,10 @@
-{ config
-, pkgs
-, nvimdotsHMModule
-, nHMM
-, ...
+{
+  config,
+  pkgs,
+  nvimdotsHMModule,
+  nHMM,
+  nvim,
+  ...
 }:
 
 {
@@ -12,6 +14,11 @@
     ./scripts.nix
     nHMM
   ];
+
+  programs.neovim = {
+    package = nvim;
+    enable = true;
+  };
 
   programs.neovim.nvimdots = {
     enable = true;

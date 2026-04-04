@@ -129,6 +129,23 @@
         "type": "github"
       }
     },
+    "nixpkgs-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774799840,
+        "narHash": "sha256-8akxyRzmQeIASOK/8nDdYMEXNmMAjwCVXzZe9YYwR7s=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c9d8364bfd32485312562fe6ee21859a78b86625",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c9d8364bfd32485312562fe6ee21859a78b86625",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1762156382,
@@ -255,11 +272,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775201427,
-        "narHash": "sha256-yTjyHtMpJiB9fAcPAtvROn5tFAwSqCTnfG7w+LtmpMM=",
+        "lastModified": 1775277378,
+        "narHash": "sha256-EOE6D+HZDiHUwCn5bLvzseAtOFSL94D5rYgbaeagsuA=",
         "owner": "quickshell-mirror",
         "repo": "quickshell",
-        "rev": "50cdf9886803c0279aafa43d0b590abdc34f5766",
+        "rev": "b4e71cb2c0afe640e62ceb7b7fb44c5fdb3546cf",
         "type": "github"
       },
       "original": {
@@ -273,6 +290,7 @@
         "dms": "dms",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-nvim": "nixpkgs-nvim",
         "noctalia": "noctalia",
         "nvimdots": "nvimdots",
         "quickshell": "quickshell_2"

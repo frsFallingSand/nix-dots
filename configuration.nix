@@ -10,6 +10,7 @@
   dmsDefaultPkg,
   quickshellPkg,
   nP,
+  nvim,
   ...
 }:
 
@@ -276,195 +277,197 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
 
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    neovim
-    git
-    curl
-    htop
-    fastfetch
-    clash-verge-rev
-    pciutils
-    alacritty
-    fuzzel
-    swaylock
-    mako
-    swayidle
-    fish
-    starship
-    hyprland
-    hyprland-qtutils
-    hyprland-protocols
-    hyprland-workspaces
-    hyprland-activewindow
-    hyprland-qt-support
-    hyprland-workspaces-tui
-    xwayland-satellite
-    # dmsDefaultPkg
-    kitty
-    eza
-    microsoft-edge
-    gnome-extension-manager
-    gst_all_1.gst-plugins-base
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-ugly
-    lsof
-    ntfs3g
-    tmux
-    btop
-    typescript
-    devbox
-    lazygit
-    noto-fonts
-    noto-fonts-cjk-sans
-    onlyoffice-desktopeditors
-    appimage-run
-    nerdfetch
-    nerd-fonts.noto
-    bibata-cursors
-    tree
-    starship
-    helix
-    cmatrix
-    obsidian
-    yazi
-    bat
-    lsd
-    obs-studio
-    wireguard-tools
-    virt-viewer # View Virtual Machines
-    lazydocker
-    docker-client
-    qemu_kvm # KVM support
-    OVMF # UEFI firmware
-    swtpm # TPM emulation
-    libguestfs # VM disk tools
-    virt-top # Monitor VM performance
-    spice # SPICE protocol support
-    spice-gtk # SPICE client GTK
-    spice-protocol # SPICE protocol headers
-    virglrenderer # Virtual GPU support
-    mesa # OpenGL support for VMs
-    ffmpeg
-    qq
-    wechat
-    waylyrics
-    protonplus
-    lutris
-    umu-launcher
-    wine
-    imagemagick
-    grim
-    nvtopPackages.full
-    kdePackages.kdenlive
-    ncdu
-    splayer
-    go-musicfox
-    scrcpy
-    libxshmfence
-    osu-lazer-bin
-    jetbrains.idea
-    vscode
-    kotlin
-    kotlin-native
-    kotlin-language-server
-    jdt-language-server
-    rustup
-    go
-    dotnet-sdk_9
-    nodejs_22
-    nodejs_20
-    gradle_9
-    maven
-    easyeffects
-    vlc
-    krita
-    timeshift
-    grim
-    btrfs-progs
-    zram-generator
-    flameshot
-    fzf
-    ripgrep
-    fd
-    zoxide
-    tealdeer
-    bottom
-    vmware-workstation
-    vmfs-tools
-    # (ovftool.override { acceptBroadcomEula = true; })
-    kubernetes
-    kubernetes-kcp
-    kubernetes-helm
-    # linuxKernel.packages.linux_6_12.vmware
-    telegram-desktop
-    discord
-    element-desktop
-    texliveFull
-    texlivePackages.ctex
-    pandoc
-    bitwarden-desktop
-    protontricks
-    rustdesk
-    rustdesk-server
-    hmcl
-    pnpm
-    wemeet
-    linux-wallpaperengine
-    # mathematica
-    android-tools
-    remmina
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    zenity
-    nP
-    affine
-    kdePackages.kirigami
-    # javaPackages.compiler.openjdk17
-    unzip
-    python3
-    clang
-    clang-tools
-    prettier
-    lua
-    lua-language-server
-    gopls
-    ruff
-    yt-dlp
-    gimp
-    prismlauncher
-    nss
-    flite
-    gnumake
-    nixd
-    nixdoc
-    nspr
-    cups
-    maa-cli
-    lmstudio
-    aria2
-    # nodePackages.yun-playlist-downloader
-    # nodePackages.openclaw
-    openssl
-    nixpkgs-fmt
-    nixpkgs-vet
-    nixpkgs-lint
-    nixpkgs-track
-    winetricks
-    cloudflare-warp
-    cloudflared
-    gcc-arm-embedded
-    bear
-    gcc
-    zim
-    zim-tools
-    kiwix
-    kiwix-tools
-    flameshot
-    shutter
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
+      git
+      curl
+      htop
+      fastfetch
+      clash-verge-rev
+      pciutils
+      alacritty
+      fuzzel
+      swaylock
+      mako
+      swayidle
+      fish
+      starship
+      hyprland
+      hyprland-qtutils
+      hyprland-protocols
+      hyprland-workspaces
+      hyprland-activewindow
+      hyprland-qt-support
+      hyprland-workspaces-tui
+      xwayland-satellite
+      # dmsDefaultPkg
+      kitty
+      eza
+      microsoft-edge
+      gnome-extension-manager
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-ugly
+      lsof
+      ntfs3g
+      tmux
+      btop
+      typescript
+      devbox
+      lazygit
+      noto-fonts
+      noto-fonts-cjk-sans
+      onlyoffice-desktopeditors
+      appimage-run
+      nerdfetch
+      nerd-fonts.noto
+      bibata-cursors
+      tree
+      starship
+      helix
+      cmatrix
+      obsidian
+      yazi
+      bat
+      lsd
+      obs-studio
+      wireguard-tools
+      virt-viewer # View Virtual Machines
+      lazydocker
+      docker-client
+      qemu_kvm # KVM support
+      OVMF # UEFI firmware
+      swtpm # TPM emulation
+      libguestfs # VM disk tools
+      virt-top # Monitor VM performance
+      spice # SPICE protocol support
+      spice-gtk # SPICE client GTK
+      spice-protocol # SPICE protocol headers
+      virglrenderer # Virtual GPU support
+      mesa # OpenGL support for VMs
+      ffmpeg
+      qq
+      wechat
+      waylyrics
+      protonplus
+      lutris
+      umu-launcher
+      wine
+      imagemagick
+      grim
+      nvtopPackages.full
+      kdePackages.kdenlive
+      ncdu
+      splayer
+      go-musicfox
+      scrcpy
+      libxshmfence
+      osu-lazer-bin
+      jetbrains.idea
+      vscode
+      kotlin
+      kotlin-native
+      kotlin-language-server
+      jdt-language-server
+      rustup
+      go
+      dotnet-sdk_9
+      nodejs_22
+      nodejs_20
+      gradle_9
+      maven
+      easyeffects
+      vlc
+      krita
+      timeshift
+      grim
+      btrfs-progs
+      zram-generator
+      flameshot
+      fzf
+      ripgrep
+      fd
+      zoxide
+      tealdeer
+      bottom
+      vmware-workstation
+      vmfs-tools
+      # (ovftool.override { acceptBroadcomEula = true; })
+      kubernetes
+      kubernetes-kcp
+      kubernetes-helm
+      # linuxKernel.packages.linux_6_12.vmware
+      telegram-desktop
+      discord
+      element-desktop
+      texliveFull
+      texlivePackages.ctex
+      pandoc
+      bitwarden-desktop
+      protontricks
+      rustdesk
+      rustdesk-server
+      hmcl
+      pnpm
+      wemeet
+      linux-wallpaperengine
+      # mathematica
+      android-tools
+      remmina
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      zenity
+      nP
+      affine
+      kdePackages.kirigami
+      # javaPackages.compiler.openjdk17
+      unzip
+      python3
+      clang
+      clang-tools
+      prettier
+      lua
+      lua-language-server
+      gopls
+      ruff
+      yt-dlp
+      gimp
+      prismlauncher
+      nss
+      flite
+      gnumake
+      nixd
+      nixdoc
+      nspr
+      cups
+      maa-cli
+      lmstudio
+      aria2
+      # nodePackages.yun-playlist-downloader
+      # nodePackages.openclaw
+      openssl
+      nixpkgs-fmt
+      nixpkgs-vet
+      nixpkgs-lint
+      nixpkgs-track
+      winetricks
+      cloudflare-warp
+      cloudflared
+      gcc-arm-embedded
+      bear
+      gcc
+      zim
+      zim-tools
+      kiwix
+      kiwix-tools
+      flameshot
+      shutter
+    ]
+    ++ [ nvim ];
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
