@@ -16,7 +16,7 @@
   ];
 
   programs.neovim = {
-    package = nvim;
+    # package = nvim;
     enable = true;
     withRuby = false;
   };
