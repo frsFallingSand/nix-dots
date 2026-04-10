@@ -230,15 +230,16 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1775268608,
-        "narHash": "sha256-C6HEdTW6G2pvEgSKRsOznCFvbkB8UdnbywClw/pkCmE=",
+        "lastModified": 1775055148,
+        "narHash": "sha256-1SF44vBuBfKf57bhnET0uKP/czhKdZ+yyg9hEQwVm7s=",
         "owner": "frsfallingsand",
         "repo": "nvimdots",
-        "rev": "5991c09ca14bbcf3c144551b7a4048870c2e455e",
+        "rev": "7dec5018e085aa8c1e35908bf12c97c5e1e1ca61",
         "type": "github"
       },
       "original": {
         "owner": "frsfallingsand",
+        "ref": "0.12",
         "repo": "nvimdots",
         "type": "github"
       }
