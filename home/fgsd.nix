@@ -18,6 +18,7 @@
   programs.neovim = {
     package = nvim;
     enable = true;
+    withRuby = false;
   };
 
   programs.neovim.nvimdots = {
