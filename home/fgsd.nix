@@ -157,7 +157,7 @@
     AQ_NO_MODESET = "1";
 
     # LD_LIBRARY
-    LD_LIBRARY_PATH = "/run/current-system/sw/lib:/run/opengl-driver/lib";
+    # LD_LIBRARY_PATH = "/run/current-system/sw/lib:/run/opengl-driver/lib";
 
     # drivers path
     LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
