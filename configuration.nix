@@ -516,11 +516,13 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
       pkgs.xdg-desktop-portal-gnome
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
       pkgs.xdg-desktop-portal-gnome
+      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
     config.common.default = [ "wlr" ];
     # 移除 gtk/kde 后端避免冲突
