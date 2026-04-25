@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs1.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-nvim = {
       url = "github:nixos/nixpkgs?rev=c9d8364bfd32485312562fe6ee21859a78b86625";
       flake = false;
@@ -39,6 +40,7 @@
       self,
       nixpkgs,
       nixpkgs-nvim,
+      nixpkgs1,
       home-manager,
       quickshell,
       nvimdots,
@@ -60,7 +62,22 @@
         inherit system;
         config.allowUnfree = true;
       };
+      pkgs-lutris = import nixpkgs1 {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          # Skipping tests while upstream sorts it out, revert once
+          # Hydra consistently builds openldap green.
+          (final: prev: {
+            openldap = prev.openldap.overrideAttrs (_: {
+              doCheck = false;
+            });
+          })
+        ];
+
+      };
       nvim = pkgs-nvim.neovim-unwrapped;
+      lutr = pkgs-lutris.lutris;
       dmsNixOSModule = inputs.dms.nixosModules.default;
       nvimdotsHMModule = nvimdots.homeManagerModules.default;
       quickshellPkg = quickshell.packages.${system}.quickshell;
@@ -90,6 +107,7 @@
             dmsDefaultPkg
             nP
             nvim
+            lutr
             ;
         };
         modules = [
