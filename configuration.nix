@@ -457,7 +457,7 @@
     winetricks
     cloudflare-warp
     cloudflared
-    gcc-arm-embedded
+    gcc-arm-embedded-13
     bear
     gcc
     zim
