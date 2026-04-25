@@ -131,7 +131,7 @@
     XMODIFIERS = "@im=fcitx";
     XIM_SERVERS = "fcitx";
     # 修复 fcitx5 插件未被发现：让 GUI 会话能找到系统共享数据目录
-    XDG_DATA_DIRS = "/run/current-system/sw/share:/var/lib/flatpak/exports/share";
+    XDG_DATA_DIRS = "/run/current-system/sw/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share";
     XDG_CONFIG_HOME = "/home/fgsd/.config";
     XDG_DATA_HOME = "/home/fgsd/.local/share";
     XDG_CACHE_HOME = "/home/fgsd/.cache";
@@ -143,6 +143,24 @@
     QT_QPA_PLATFORMTHEME = "kde";
     XDG_MENU_PREFIX = "plasma-";
     TERMINAL = "kitty -1";
+    ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
+
+    # From QQ Group
+    DISPLAY = ":0";
+    XDG_CURRENT_DESKTOP = "hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    GDK_BACKEND = "wayland";
+
+    # From MorningMC (NvidiaSupport)
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    AQ_NO_MODESET = "1";
+
+    # LD_LIBRARY
+    LD_LIBRARY_PATH = "/run/current-system/sw/lib:/run/opengl-driver/lib";
+
+    # drivers path
+    LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
   };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
