@@ -142,7 +142,7 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
+    font = "default8x16";
     # keyMap = "us";
     useXkbConfig = true; # use xkb.options in tty.
   };
