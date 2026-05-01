@@ -472,6 +472,7 @@
       cups-pdf-to-pdf
       neovim
       material-symbols
+      helm
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
