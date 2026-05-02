@@ -472,6 +472,7 @@
       neovim
       material-symbols
       helm
+      netcap
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
