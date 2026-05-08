@@ -473,6 +473,7 @@
       material-symbols
       helm
       netcap
+      authenticator
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
