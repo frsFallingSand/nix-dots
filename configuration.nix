@@ -477,6 +477,7 @@
       helm
       netcap
       authenticator
+      hyprlock
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
