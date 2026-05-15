@@ -41,6 +41,7 @@
     ## Use NixGL
     #package = config.lib.nixGL.wrap pkgs.hyprland;
     package = pkgs.hyprland;
+    configType = "hyprlang";
   };
 
   home = {
