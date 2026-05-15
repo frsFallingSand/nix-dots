@@ -100,7 +100,7 @@
         kdePackages.breeze-icons # breeze
         # breeze-plus # (TODO: Not available as nixpkg)
         darkly
-        darkly-qt5 # darkly-bin
+        # darkly-qt5 # darkly-bin
         eza # eza
         #fish (Currently install via system PM; TODO: should install via nix in future when authentication problem fixed)
         fontconfig # fontconfig
