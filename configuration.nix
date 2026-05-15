@@ -378,6 +378,7 @@
       kotlin-language-server
       jdt-language-server
       rustup
+      cargo
       go
       dotnet-sdk_9
       nodejs_22
