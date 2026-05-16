@@ -227,7 +227,7 @@
   #  /etc/profiles/per-user/fgsd/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
