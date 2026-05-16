@@ -9,6 +9,8 @@
       flake = false;
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # nvimdots.url = "github:ayamir/nvimdots";
     # nvimdots.url = "github:frsfallingsand/nvimdots";
     nvimdots.url = "github:frsfallingsand/nvimdots?ref=0.12";
@@ -41,6 +43,7 @@
       nixpkgs,
       nixpkgs-nvim,
       nixpkgs1,
+      hyprland,
       home-manager,
       quickshell,
       nvimdots,
@@ -90,6 +93,7 @@
           quickshell
           nHMM
           nvim
+          hyprland
           ;
       };
 
@@ -108,6 +112,7 @@
             nP
             nvim
             lutr
+            hyprland
             ;
         };
         modules = [

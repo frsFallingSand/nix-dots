@@ -3,6 +3,7 @@
   lib,
   pkgs,
   quickshell,
+  hyprland,
   ...
 }:
 {
@@ -40,7 +41,7 @@
     enable = true;
     ## Use NixGL
     #package = config.lib.nixGL.wrap pkgs.hyprland;
-    package = pkgs.hyprland;
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     configType = "lua";
   };
 
