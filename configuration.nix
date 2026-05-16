@@ -12,6 +12,7 @@
   nP,
   nvim,
   lutr,
+  hyprland,
   ...
 }:
 
@@ -168,6 +169,7 @@
     enable = true;
     withUWSM = false;
     xwayland.enable = true;
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
 
   services.displayManager.gdm.enable = true;
