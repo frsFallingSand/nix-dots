@@ -480,6 +480,9 @@
       netcap
       authenticator
       hyprlock
+      gitlab-kas
+      gitlab-runner
+      gcli
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
