@@ -485,6 +485,7 @@
       gitlab-kas
       gitlab-runner
       gcli
+      glab
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
