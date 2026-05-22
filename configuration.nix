@@ -41,6 +41,9 @@
     "kvm-intel"
     "vfio-pci"
   ];
+
+  boot.kernel.sysctl."kernel.sysrq" = 1;
+
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   virtualisation.vmware.host.enable = true;
