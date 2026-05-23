@@ -488,6 +488,7 @@
       glab
       rmpc
       crosspipe
+      mpd
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
