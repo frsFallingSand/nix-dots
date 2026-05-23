@@ -488,6 +488,7 @@
       gcli
       glab
       rmpc
+      crosspipe
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
