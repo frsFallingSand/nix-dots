@@ -487,6 +487,7 @@
       gitlab-runner
       gcli
       glab
+      rmpc
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
