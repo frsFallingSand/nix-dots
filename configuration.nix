@@ -490,6 +490,10 @@
       rmpc
       crosspipe
       mpd
+      pkg-config-unwrapped
+      glib
+      glibc
+      pipewire
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
