@@ -495,6 +495,7 @@
       glib
       glibc
       pipewire
+      opencode
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
