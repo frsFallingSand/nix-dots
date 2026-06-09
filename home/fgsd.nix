@@ -37,83 +37,83 @@
     };
   };
   # configure options
-  programs.noctalia-shell.enable = true;
-  programs.noctalia-shell.settings = {
-    bar = {
-      widgets = {
-        left = [
-          { id = "Launcher"; }
-          { id = "Workspace"; }
-        ];
-        center = [
-          { id = "Clock"; }
-        ];
-        right = [
-          { id = "Tray"; }
-          {
-            id = "CustomButton";
-            icon = "wifi";
-            textCommand = "/home/fgsd/.local/bin/noctalia-net-status";
-            parseJson = true;
-            textIntervalMs = 5000;
-            maxTextLength = {
-              horizontal = 8;
-              vertical = 8;
-            };
-          }
-          {
-            id = "CustomButton";
-            icon = "bluetooth";
-            textCommand = "/home/fgsd/.local/bin/noctalia-bluetooth";
-            leftClickExec = "/home/fgsd/.local/bin/niri-run blueman-manager";
-            parseJson = true;
-            textIntervalMs = 5000;
-            maxTextLength = {
-              horizontal = 4;
-              vertical = 4;
-            };
-          }
-          { id = "Volume"; }
-          { id = "Brightness"; }
-          { id = "Battery"; }
-          {
-            id = "CustomButton";
-            icon = "gpu";
-            textCommand = "/home/fgsd/.local/bin/noctalia-gpu-mode";
-            leftClickExec = "/home/fgsd/.local/bin/noctalia-gpu-mode --menu";
-            leftClickUpdateText = true;
-            parseJson = true;
-            textIntervalMs = 5000;
-            maxTextLength = {
-              horizontal = 10;
-              vertical = 10;
-            };
-          }
-          {
-            id = "CustomButton";
-            icon = "shield";
-            textCommand = "/home/fgsd/.local/bin/noctalia-proxy-status";
-            parseJson = true;
-            textIntervalMs = 5000;
-            maxTextLength = {
-              horizontal = 6;
-              vertical = 6;
-            };
-          }
-          {
-            id = "CustomButton";
-            icon = "power";
-            textCommand = "/home/fgsd/.local/bin/noctalia-power";
-            leftClickExec = "niri msg action quit";
-            parseJson = true;
-            textIntervalMs = 60000;
-          }
-          { id = "NotificationHistory"; }
-          { id = "ControlCenter"; }
-        ];
-      };
-    };
-  };
+  # programs.noctalia-shell.enable = true;
+  # programs.noctalia-shell.settings = {
+  #   bar = {
+  #     widgets = {
+  #       left = [
+  #         { id = "Launcher"; }
+  #         { id = "Workspace"; }
+  #       ];
+  #       center = [
+  #         { id = "Clock"; }
+  #       ];
+  #       right = [
+  #         { id = "Tray"; }
+  #         {
+  #           id = "CustomButton";
+  #           icon = "wifi";
+  #           textCommand = "/home/fgsd/.local/bin/noctalia-net-status";
+  #           parseJson = true;
+  #           textIntervalMs = 5000;
+  #           maxTextLength = {
+  #             horizontal = 8;
+  #             vertical = 8;
+  #           };
+  #         }
+  #         {
+  #           id = "CustomButton";
+  #           icon = "bluetooth";
+  #           textCommand = "/home/fgsd/.local/bin/noctalia-bluetooth";
+  #           leftClickExec = "/home/fgsd/.local/bin/niri-run blueman-manager";
+  #           parseJson = true;
+  #           textIntervalMs = 5000;
+  #           maxTextLength = {
+  #             horizontal = 4;
+  #             vertical = 4;
+  #           };
+  #         }
+  #         { id = "Volume"; }
+  #         { id = "Brightness"; }
+  #         { id = "Battery"; }
+  #         {
+  #           id = "CustomButton";
+  #           icon = "gpu";
+  #           textCommand = "/home/fgsd/.local/bin/noctalia-gpu-mode";
+  #           leftClickExec = "/home/fgsd/.local/bin/noctalia-gpu-mode --menu";
+  #           leftClickUpdateText = true;
+  #           parseJson = true;
+  #           textIntervalMs = 5000;
+  #           maxTextLength = {
+  #             horizontal = 10;
+  #             vertical = 10;
+  #           };
+  #         }
+  #         {
+  #           id = "CustomButton";
+  #           icon = "shield";
+  #           textCommand = "/home/fgsd/.local/bin/noctalia-proxy-status";
+  #           parseJson = true;
+  #           textIntervalMs = 5000;
+  #           maxTextLength = {
+  #             horizontal = 6;
+  #             vertical = 6;
+  #           };
+  #         }
+  #         {
+  #           id = "CustomButton";
+  #           icon = "power";
+  #           textCommand = "/home/fgsd/.local/bin/noctalia-power";
+  #           leftClickExec = "niri msg action quit";
+  #           parseJson = true;
+  #           textIntervalMs = 60000;
+  #         }
+  #         { id = "NotificationHistory"; }
+  #         { id = "ControlCenter"; }
+  #       ];
+  #     };
+  #   };
+  # };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
