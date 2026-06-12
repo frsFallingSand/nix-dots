@@ -387,7 +387,6 @@
       go
       dotnet-sdk_9
       nodejs_22
-      nodejs_20
       gradle_9
       maven
       easyeffects
@@ -405,7 +404,7 @@
       tealdeer
       bottom
       vmware-workstation
-      vmfs-tools
+      # vmfs-tools
       # (ovftool.override { acceptBroadcomEula = true; })
       kubernetes
       kubernetes-kcp
