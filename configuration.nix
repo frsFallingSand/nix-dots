@@ -602,7 +602,7 @@
       onBoot = "start";
       onShutdown = "shutdown";
       qemu = {
-        runAsRoot = false;
+        runAsRoot = true;
         # ovmf submodule REMOVED: All OVMF images are now available by default in nixpkgs-unstable
         swtpm.enable = true; # TPM emulation
         vhostUserPackages = with pkgs; [ virtiofsd ];
@@ -615,6 +615,7 @@
         '';
       };
       allowedBridges = [
+        "enp7s0"
         "virbr0" # Default NAT bridge
         "br0" # Custom bridge if needed
       ];
