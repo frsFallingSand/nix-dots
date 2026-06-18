@@ -498,6 +498,7 @@
       glibc
       pipewire
       opencode
+      virtio-win
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
