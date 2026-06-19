@@ -66,5 +66,23 @@ in
     systemd.tmpfiles.rules = [
       "f /dev/shm/looking-glass 0660 ${cfg.userName} kvm -"
     ];
+
+    # 6. Scream config
+    systemd.user.services.scream = {
+      description = "Scream Audio Receiver for KVM";
+      wantedBy = [ "default.target" ];
+      after = [
+        "pipewire.service"
+        "pulseaudio.service"
+      ]; # 确保在音频服务后启动
+
+      serviceConfig = {
+        # 运行 scream 客户端，-o pulse 表示输出到 pulseaudio/pipewire
+        # 如果你的网卡不是默认路由，可能需要加 -m 指定网卡 IP，例如 -m 192.168.1.100
+        ExecStart = "${pkgs.scream}/bin/scream -o pulse";
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
   };
 }
