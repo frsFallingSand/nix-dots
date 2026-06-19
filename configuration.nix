@@ -236,6 +236,7 @@
       "dialout"
       "trusted-users"
       "input"
+      "disk" # 允许访问物理磁盘
     ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEfAfx9NtJjJ+5aRopDw/1WZwXPPHM8SflPIweRNPWW frsfallingsand@outlook.com"
@@ -516,6 +517,7 @@
       blendfarm
       intel-gpu-tools
       looking-glass-client
+      OVMFFull
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
