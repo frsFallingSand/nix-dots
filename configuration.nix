@@ -512,6 +512,8 @@
       pipewire
       opencode
       virtio-win
+      blender
+      blendfarm
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
