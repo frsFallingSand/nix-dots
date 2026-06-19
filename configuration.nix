@@ -518,6 +518,7 @@
       intel-gpu-tools
       looking-glass-client
       OVMFFull
+      scream
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
