@@ -643,6 +643,25 @@
     spiceUSBRedirection.enable = true;
   };
 
+  specialisation.passthrough = {
+    inheritParentConfig = true; # 继承父配置
+    configuration =
+      { config, pkgs, ... }:
+      {
+        imports = [ ./modules/vfio-passthrough.nix ];
+        vfio-passthrough = {
+          enable = true;
+
+          # 在正常启动的 Linux 下运行 `lspci -nn | grep -i nvidia` 获取
+          gpuIds = "10de:2507,10de:228e";
+
+          # 【关键】替换为你需要的大页数量。
+          # 假设你给虚拟机分配 16G 内存，16*1024/2 = 8192，稍微大点写 8500
+          hugepages2MCount = 16400;
+        };
+      };
+  };
+
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
