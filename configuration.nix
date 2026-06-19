@@ -514,6 +514,7 @@
       virtio-win
       blender
       blendfarm
+      intel-gpu-tools
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
