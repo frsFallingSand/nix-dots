@@ -514,6 +514,7 @@
       blender
       blendfarm
       intel-gpu-tools
+      looking-glass-client
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
