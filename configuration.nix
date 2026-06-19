@@ -606,8 +606,18 @@
   programs.virt-manager.enable = true;
   programs.dconf.enable = true;
 
-  programs.obs-studio.enable = true;
-  programs.obs-studio.enableVirtualCamera = true;
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs; [
+      obs-studio-plugins.input-overlay
+      obs-studio-plugins.looking-glass-obs
+      obs-studio-plugins.obs-media-controls
+      obs-studio-plugins.obs-pipewire-audio-capture
+      obs-studio-plugins.waveform
+      obs-studio-plugins.wlrobs
+    ];
+  };
 
   virtualisation = {
     docker = {
