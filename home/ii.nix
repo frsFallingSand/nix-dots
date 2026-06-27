@@ -40,8 +40,8 @@
     extraConfig = "";
     enable = true;
     ## Use NixGL
-    #package = config.lib.nixGL.wrap pkgs.hyprland;
-    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = config.lib.nixGL.wrap pkgs.hyprland;
+    # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     configType = "lua";
   };
 
