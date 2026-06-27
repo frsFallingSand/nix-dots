@@ -11,6 +11,8 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     # nvimdots.url = "github:ayamir/nvimdots";
     # nvimdots.url = "github:frsfallingsand/nvimdots";
     nvimdots.url = "github:frsfallingsand/nvimdots?ref=0.12";
@@ -47,6 +49,7 @@
       home-manager,
       quickshell,
       nvimdots,
+      chaotic,
       ...
     }@inputs:
     let
@@ -119,6 +122,7 @@
           ./configuration.nix
           inputs.home-manager.nixosModules.default
           home-manager.nixosModules.home-manager
+          chaotic.nixosModules.default
           {
             home-manager = {
               useUserPackages = true;
