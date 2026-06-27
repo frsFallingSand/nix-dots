@@ -48,7 +48,8 @@
 
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
   virtualisation.vmware.host.enable = true;
   virtualisation.vmware.host.extraPackages = with pkgs; [
@@ -95,7 +96,8 @@
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.beta;
   };
 
   swapDevices = [
