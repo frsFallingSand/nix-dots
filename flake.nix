@@ -80,7 +80,6 @@
             });
           })
         ];
-
       };
       nvim = pkgs-nvim.neovim-unwrapped;
       lutr = pkgs-lutris.lutris;
