@@ -525,6 +525,8 @@
       looking-glass-client
       OVMFFull
       scream
+      just
+      nvd
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
