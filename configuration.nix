@@ -528,6 +528,8 @@
       scream
       just
       nvd
+      flclash
+      # hyprlandPlugins.hyprsplit
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
