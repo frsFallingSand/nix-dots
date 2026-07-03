@@ -441,7 +441,7 @@
       texliveFull
       texlivePackages.ctex
       pandoc
-      bitwarden-desktop
+      # bitwarden-desktop
       protontricks
       rustdesk
       rustdesk-server
