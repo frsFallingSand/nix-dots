@@ -29,6 +29,8 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10"
+    "pnpm-9.15.9"
+    "pnpm-10.29.2"
   ];
 
   # Use the systemd-boot EFI boot loader.
