@@ -539,6 +539,7 @@
       flclash
       # hyprlandPlugins.hyprsplit
       wev
+      opentabletdriver
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
