@@ -293,7 +293,7 @@
   programs.java.enable = true;
 
   programs.dms-shell = {
-    enable = true;
+    enable = false;
 
     quickshell.package = quickshellPkg;
 
