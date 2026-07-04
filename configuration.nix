@@ -33,6 +33,14 @@
     "pnpm-10.29.2"
   ];
 
+  systemd.services.libvirtd.serviceConfig = {
+    LoadCredentialEncrypted = lib.mkForce [ ];
+    LoadCredential = lib.mkForce [ ];
+    ImportCredential = lib.mkForce [ ];
+  };
+
+  systemd.services.virt-secret-init-encryption.enable = false;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -645,7 +653,7 @@
       qemu = {
         runAsRoot = true;
         # ovmf submodule REMOVED: All OVMF images are now available by default in nixpkgs-unstable
-        swtpm.enable = true; # TPM emulation
+        swtpm.enable = false; # TPM emulation
         vhostUserPackages = with pkgs; [ virtiofsd ];
 
         verbatimConfig = ''
