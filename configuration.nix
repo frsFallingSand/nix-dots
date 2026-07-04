@@ -538,6 +538,7 @@
       nvd
       flclash
       # hyprlandPlugins.hyprsplit
+      wev
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
