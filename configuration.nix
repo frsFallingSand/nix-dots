@@ -540,6 +540,8 @@
       # hyprlandPlugins.hyprsplit
       wev
       opentabletdriver
+      hashdeep
+      rhash
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
