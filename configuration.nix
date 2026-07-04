@@ -281,6 +281,22 @@
     ncurses
     readline
     alsa-lib
+
+    # 图形与多媒体基础库 (Electron 应用需要)
+    libGL
+    libGLU
+    libglvnd
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+    xorg.libXtst
+    xorg.libXi
+
+    # NVIDIA CUDA 相关库 (如果你要开启 GPU Offload，必选)
+    linuxPackages.nvidia_x11
+    cudaPackages.cudatoolkit
+    cudaPackages.cuda_nvrtc
+    cudaPackages.libcublas
   ];
 
   #programs.dotnet.dev = {
