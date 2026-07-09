@@ -286,11 +286,11 @@
     libGL
     libGLU
     libglvnd
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
-    xorg.libXtst
-    xorg.libXi
+    libX11
+    libXext
+    libXrender
+    libXtst
+    libXi
 
     # NVIDIA CUDA 相关库 (如果你要开启 GPU Offload，必选)
     linuxPackages.nvidia_x11
