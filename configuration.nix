@@ -559,6 +559,10 @@
       opentabletdriver
       hashdeep
       rhash
+      p7zip
+      peazip
+      p7zip-rar
+      unrar
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
