@@ -719,6 +719,12 @@
       };
   };
 
+  specialisation.tmp-on-root = {
+    configuration = {
+      boot.tmp.useTmpfs = lib.mkForce false;
+    };
+  };
+
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
