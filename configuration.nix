@@ -60,6 +60,8 @@
     "vfio-pci"
   ];
 
+  boot.tmp.useTmpfs = true;
+
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
