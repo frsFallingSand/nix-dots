@@ -28,9 +28,9 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-39.8.10"
-    "pnpm-9.15.9"
-    "pnpm-10.29.2"
+    # "electron-39.8.10"
+    # "pnpm-9.15.9"
+    # "pnpm-10.29.2"
   ];
 
   systemd.services.libvirtd.serviceConfig = {
@@ -293,12 +293,27 @@
     libXrender
     libXtst
     libXi
+    libXcomposite
+    libXdamage
+    libXfixes
+    libXrandr
+    libxcb
 
     # NVIDIA CUDA 相关库 (如果你要开启 GPU Offload，必选)
     linuxPackages.nvidia_x11
     cudaPackages.cudatoolkit
     cudaPackages.cuda_nvrtc
     cudaPackages.libcublas
+
+    vulkan-loader
+    libva-vdpau-driver
+    libvdpau-va-gl
+
+    glib
+
+    # Fuck MCEF
+    nspr
+    nss
   ];
 
   #programs.dotnet.dev = {
