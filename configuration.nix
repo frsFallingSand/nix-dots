@@ -580,6 +580,8 @@
       peazip
       p7zip-rar
       unrar
+      typescript
+      typescript-language-server
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
