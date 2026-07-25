@@ -716,11 +716,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1784991122,
-        "narHash": "sha256-ECDzvOaaZ+T+AnATQI8iv1FK4C2TFIykLjzodWlqTs4=",
+        "lastModified": 1784992453,
+        "narHash": "sha256-MiHPs3U97XZ4fZlhotL6+7BOYgXXjZIBJMez29w9fwA=",
         "owner": "frsfallingsand",
         "repo": "nvimdots",
-        "rev": "6abe27ff5c13891258c409ca109baebf5ba82aad",
+        "rev": "b8aa6d13849278c49e2dfebe58ec71f8539bce25",
         "type": "github"
       },
       "original": {
