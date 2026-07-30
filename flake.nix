@@ -15,7 +15,7 @@
 
     # nvimdots.url = "github:ayamir/nvimdots";
     # nvimdots.url = "github:frsfallingsand/nvimdots";
-    nvimdots.url = "github:frsfallingsand/nvimdots?ref=0.12";
+    nvimdots.url = "github:frsfallingsand/nvimdots?ref=main";
 
     home-manager = {
       url = "github:nix-community/home-manager";
