@@ -581,6 +581,7 @@
       unrar
       typescript
       typescript-language-server
+      wayvnc
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
