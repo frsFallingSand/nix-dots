@@ -13,6 +13,8 @@
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/master";
+
     # nvimdots.url = "github:ayamir/nvimdots";
     # nvimdots.url = "github:frsfallingsand/nvimdots";
     nvimdots.url = "github:frsfallingsand/nvimdots?ref=main";
@@ -49,7 +51,8 @@
       home-manager,
       quickshell,
       nvimdots,
-      chaotic,
+      # chaotic,
+      nix-cachyos-kernel,
       ...
     }@inputs:
     let
@@ -63,6 +66,20 @@
       #lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [
+          (final: prev: {
+            vmware-modules = prev.vmware-modules.overrideAttrs (oldAttrs: {
+              # 核心：只把 gcc 塞进构建依赖，让它能找到 gcc
+              nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.gcc ];
+
+              # 可选：如果它还是报错，可以显式指定用 gcc 编译模块
+              makeFlags = (oldAttrs.makeFlags or [ ]) ++ [
+                "CC=gcc"
+                "HOSTCC=gcc"
+              ];
+            });
+          })
+        ];
       };
       pkgs-nvim = import nixpkgs-nvim {
         inherit system;
@@ -89,6 +106,7 @@
       dmsDefaultPkg = inputs.dms.packages.${system}.default;
       nHMM = inputs.noctalia.homeModules.default;
       nP = inputs.noctalia.packages.${system}.default;
+      cachy = inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore-lto-x86_64-v3;
       hmSpecialArgs = {
         inherit
           nvimdotsHMModule
@@ -115,13 +133,14 @@
             nvim
             lutr
             hyprland
+            cachy
             ;
         };
         modules = [
           ./configuration.nix
           inputs.home-manager.nixosModules.default
           home-manager.nixosModules.home-manager
-          chaotic.nixosModules.default
+          # chaotic.nixosModules.default
           {
             home-manager = {
               useUserPackages = true;
