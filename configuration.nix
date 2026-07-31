@@ -13,6 +13,7 @@
   nvim,
   lutr,
   hyprland,
+  cachy,
   ...
 }:
 
@@ -64,14 +65,17 @@
 
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  boot.kernelPackages = pkgs.linuxPackagesFor cachy;
 
-  virtualisation.vmware.host.enable = true;
+  # boot.zfs.package = pkgs.zfs_cachyos;
+
+  virtualisation.vmware.host.enable = false;
   virtualisation.vmware.host.extraPackages = with pkgs; [
     libaio
     pcsclite
-    linuxKernel.packages.linux_zen.vmware
+    # linuxKernel.packages.linux_zen.vmware
   ];
   virtualisation.vmware.guest.enable = true;
 
@@ -112,8 +116,8 @@
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.stable;
   };
 
   swapDevices = [
@@ -583,6 +587,7 @@
       typescript
       typescript-language-server
       wayvnc
+      rustc
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
@@ -740,6 +745,13 @@
   specialisation.tmp-on-root = {
     configuration = {
       boot.tmp.useTmpfs = lib.mkForce false;
+    };
+  };
+
+  specialisation.zen-kernel = {
+    configuration = {
+      boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
+      virtualisation.vmware.host.enable = lib.mkForce true;
     };
   };
 
