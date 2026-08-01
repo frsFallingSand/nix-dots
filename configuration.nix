@@ -416,7 +416,6 @@
       yazi
       bat
       lsd
-      obs-studio
       wireguard-tools
       virt-viewer # View Virtual Machines
       lazydocker
@@ -682,13 +681,22 @@
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
-    plugins = with pkgs; [
-      obs-studio-plugins.input-overlay
-      obs-studio-plugins.looking-glass-obs
-      obs-studio-plugins.obs-media-controls
-      obs-studio-plugins.obs-pipewire-audio-capture
-      obs-studio-plugins.waveform
-      obs-studio-plugins.wlrobs
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+    plugins = with pkgs.obs-studio-plugins; [
+      input-overlay
+      looking-glass-obs
+      obs-media-controls
+      obs-pipewire-audio-capture
+      obs-backgroundremoval
+      obs-vaapi
+      obs-gstreamer
+      obs-vkcapture
+      waveform
+      wlrobs
     ];
   };
 
