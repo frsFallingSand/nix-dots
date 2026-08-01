@@ -587,6 +587,8 @@
       typescript-language-server
       wayvnc
       rustc
+      sunshine
+      moonlight-qt
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
