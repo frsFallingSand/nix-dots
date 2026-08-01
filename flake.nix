@@ -9,6 +9,11 @@
       flake = false;
     };
 
+    nixpkgs-hypr = {
+      url = "github:nixos/nixpkgs?rev=b5aa0fbd538984f6e3d201be0005b4463d8b09f8";
+      flake = false;
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -53,6 +58,7 @@
       nvimdots,
       # chaotic,
       nix-cachyos-kernel,
+      nixpkgs-hypr,
       ...
     }@inputs:
     let
@@ -66,20 +72,6 @@
       #lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          (final: prev: {
-            vmware-modules = prev.vmware-modules.overrideAttrs (oldAttrs: {
-              # 核心：只把 gcc 塞进构建依赖，让它能找到 gcc
-              nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.gcc ];
-
-              # 可选：如果它还是报错，可以显式指定用 gcc 编译模块
-              makeFlags = (oldAttrs.makeFlags or [ ]) ++ [
-                "CC=gcc"
-                "HOSTCC=gcc"
-              ];
-            });
-          })
-        ];
       };
       pkgs-nvim = import nixpkgs-nvim {
         inherit system;
@@ -98,6 +90,10 @@
         # })
         # ];
       };
+      pkgs-hypr = import nixpkgs-hypr {
+        inherit system;
+        config.allowUnfree = true;
+      };
       nvim = pkgs-nvim.neovim-unwrapped;
       lutr = pkgs-lutris.lutris;
       dmsNixOSModule = inputs.dms.nixosModules.default;
@@ -107,6 +103,7 @@
       nHMM = inputs.noctalia.homeModules.default;
       nP = inputs.noctalia.packages.${system}.default;
       cachy = inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore-lto-x86_64-v3;
+      hypr = pkgs-hypr.hyprland;
       hmSpecialArgs = {
         inherit
           nvimdotsHMModule
@@ -114,6 +111,7 @@
           nHMM
           nvim
           hyprland
+          hypr
           ;
       };
 
@@ -134,6 +132,7 @@
             lutr
             hyprland
             cachy
+            hypr
             ;
         };
         modules = [

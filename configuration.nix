@@ -14,6 +14,7 @@
   lutr,
   hyprland,
   cachy,
+  hypr,
   ...
 }:
 
@@ -211,6 +212,7 @@
     withUWSM = false;
     xwayland.enable = true;
     # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = hypr;
   };
 
   services.displayManager.gdm.enable = true;
