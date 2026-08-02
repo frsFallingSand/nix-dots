@@ -593,6 +593,7 @@
       moonlight-qt
       webrtc-audio-processing
       dnsutils
+      guestfs-tools
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
