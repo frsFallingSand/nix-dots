@@ -590,6 +590,7 @@
       rustc
       sunshine
       moonlight-qt
+      webrtc-audio-processing
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
