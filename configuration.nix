@@ -592,6 +592,7 @@
       sunshine
       moonlight-qt
       webrtc-audio-processing
+      dnsutils
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
