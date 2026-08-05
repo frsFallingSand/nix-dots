@@ -594,6 +594,8 @@
       webrtc-audio-processing
       dnsutils
       guestfs-tools
+      bpftools
+      iputils
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
