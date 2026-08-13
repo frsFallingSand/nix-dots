@@ -596,6 +596,7 @@
       guestfs-tools
       bpftools
       iputils
+      claude-code
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
