@@ -266,6 +266,10 @@
     ];
   };
 
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", MODE="0660"
+  '';
+
   programs.firefox.enable = true;
 
   programs.steam = {
