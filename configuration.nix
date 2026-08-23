@@ -601,6 +601,7 @@
       bpftools
       iputils
       claude-code
+      reptyr
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
