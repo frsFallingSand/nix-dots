@@ -446,7 +446,7 @@
       nvtopPackages.full
       kdePackages.kdenlive
       ncdu
-      splayer
+      splayer-next
       go-musicfox
       scrcpy
       libxshmfence
@@ -578,7 +578,7 @@
       scream
       just
       nvd
-      flclash
+      # flclash
       # hyprlandPlugins.hyprsplit
       wev
       opentabletdriver
