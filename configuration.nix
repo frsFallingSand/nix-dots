@@ -627,6 +627,7 @@
       iputils
       claude-code
       reptyr
+      psmisc
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
