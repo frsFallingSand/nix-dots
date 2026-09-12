@@ -814,11 +814,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1785412382,
-        "narHash": "sha256-AAFm2OPRi211PdFugwI49jOg/0FcyfGAB0HmRS3dBMo=",
+        "lastModified": 1788776692,
+        "narHash": "sha256-EK811PtxWPL7Du2lz8biQ0/JadVI3XFqKUpsor15QdQ=",
         "owner": "frsfallingsand",
         "repo": "nvimdots",
-        "rev": "6a554cc5a8ded1823e712ad3df1ac7d8d5cab017",
+        "rev": "9f118f187f0292e1afad59d6b2b078a7d0970a33",
         "type": "github"
       },
       "original": {
