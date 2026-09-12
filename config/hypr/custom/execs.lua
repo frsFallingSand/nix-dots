@@ -1,0 +1,5 @@
+hl.on("hyprland.start", function()
+	hl.exec_cmd("fcitx5")
+	hl.exec_cmd("GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb clash-verge")
+	hl.exec_cmd("sleep 5 && hyprctl reload")
+end)
