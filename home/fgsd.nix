@@ -15,6 +15,10 @@
     nHMM
   ];
 
+  xdg.configFile."quickshell".source = ../config/quickshell;
+  xdg.configFile."hypr".source = ../config/hypr;
+  xdg.configFile."hypr".recursive = true;
+
   programs.neovim = {
     # package = nvim;
     enable = true;
