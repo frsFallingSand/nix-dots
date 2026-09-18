@@ -628,6 +628,7 @@
       claude-code
       reptyr
       psmisc
+      codex
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
