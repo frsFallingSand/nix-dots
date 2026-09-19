@@ -742,6 +742,13 @@
   virtualisation = {
     docker = {
       enable = true;
+      daemon.settings = {
+        features = {
+          containerd-snapshotter = false;
+        };
+        # 如果需要，也可以在此显式指定 storage-driver 为 overlay2
+        # "storage-driver" = "overlay2";
+      };
     };
 
     podman.enable = false;
