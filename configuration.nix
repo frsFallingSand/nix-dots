@@ -103,10 +103,12 @@
       intel-media-driver # 推荐，适用于 Gen 8+ 显卡 (LIBVA_DRIVER_NAME=iHD)
       # libva-intel-driver # 如果你的 CPU 非常老（Haswell 或更早），用这个 (LIBVA_DRIVER_NAME=i965)
       vpl-gpu-rt # Intel 视频处理库 (OneVPL)
+      mangohud
     ];
     extraPackages32 = with pkgs; [
       # 32位应用（如 Steam 里的老游戏）需要的驱动
       intel-media-driver
+      pkgsi686Linux.mangohud
     ];
   };
 
@@ -630,6 +632,7 @@
       psmisc
       codex
       gamescope
+      mangohud
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
