@@ -149,7 +149,7 @@ hl.bind(
 )
 hl.bind("SUPER + ALT + R", hl.dsp.global("quickshell:regionRecord"), { locked = true })
 hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd(qsIsAlive .. " || " .. qsScripts .. "/videos/record.sh"), { locked = true })
-hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd(qsScripts .. "/videos/record.sh --fullscreen"), { locked = true })
+hl.bind("SUPER + CTRL + ALT + R", hl.dsp.exec_cmd(qsScripts .. "/videos/record.sh --fullscreen"), { locked = true })
 hl.bind(
 	"SUPER + SHIFT + ALT + R",
 	hl.dsp.exec_cmd(qsScripts .. "/videos/record.sh --fullscreen --sound"),
