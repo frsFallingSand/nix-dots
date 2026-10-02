@@ -121,28 +121,19 @@ let
       runtimeInputs = [ pkgs.systemd ];
     };
   };
-
-  # 软链到 ~/.local/bin，方便手动执行
-  mkBinLink = name: {
-    source = "${scripts.${name}}/bin/${name}";
-  };
 in
 {
-  # 把脚本作为包安装到用户环境
+  # Install every script in the user profile.
   home.packages = lib.mkAfter (builtins.attrValues scripts);
 
-  # 将脚本暴露为常用命令
-  home.file.".local/bin/lock-screen" = mkBinLink "lock-screen";
-  home.file.".local/bin/niri-run" = mkBinLink "niri-run";
-  home.file.".local/bin/noctalia-flake-updates" = mkBinLink "noctalia-flake-updates";
-  home.file.".local/bin/noctalia-gpu-mode" = mkBinLink "noctalia-gpu-mode";
-  home.file.".local/bin/noctalia-net-speed" = mkBinLink "noctalia-net-speed";
-  home.file.".local/bin/noctalia-net-status" = mkBinLink "noctalia-net-status";
-  home.file.".local/bin/noctalia-bluetooth" = mkBinLink "noctalia-bluetooth";
-  home.file.".local/bin/noctalia-cpu" = mkBinLink "noctalia-cpu";
-  home.file.".local/bin/noctalia-memory" = mkBinLink "noctalia-memory";
-  home.file.".local/bin/noctalia-temperature" = mkBinLink "noctalia-temperature";
-  home.file.".local/bin/noctalia-disk" = mkBinLink "noctalia-disk";
-  home.file.".local/bin/noctalia-power" = mkBinLink "noctalia-power";
-  home.file.".local/bin/noctalia-proxy-status" = mkBinLink "noctalia-proxy-status";
+  # Expose every packaged script under ~/.local/bin without maintaining a
+  # second hand-written list.
+  home.file = lib.mapAttrs'
+    (
+      name: script:
+        lib.nameValuePair ".local/bin/${name}" {
+          source = "${script}/bin/${name}";
+        }
+    )
+    scripts;
 }

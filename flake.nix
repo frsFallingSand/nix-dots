@@ -49,20 +49,18 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-nvim,
-      nixpkgs1,
-      hyprland,
-      home-manager,
-      quickshell,
-      nvimdots,
-      # chaotic,
-      nix-cachyos-kernel,
-      nixpkgs-hypr,
-      drawing-tablet,
-      ...
+    { self
+    , nixpkgs
+    , nixpkgs-nvim
+    , nixpkgs1
+    , hyprland
+    , home-manager
+    , quickshell
+    , nvimdots
+    , nix-cachyos-kernel
+    , nixpkgs-hypr
+    , drawing-tablet
+    , ...
     }@inputs:
     let
       system = "x86_64-linux";

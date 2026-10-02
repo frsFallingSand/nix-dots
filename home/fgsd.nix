@@ -1,26 +1,26 @@
-{
-  config,
-  pkgs,
-  nvimdotsHMModule,
-  nHMM,
-  nvim,
-  ...
+{ nvimdotsHMModule
+, nHMM
+, ...
 }:
 
 {
   imports = [
     nvimdotsHMModule
-    ./ii.nix
-    ./scripts.nix
     nHMM
+    ./desktop.nix
+    ./packages.nix
+    ./scripts.nix
   ];
 
+  # Keep dotfiles in the repository while preserving the recursive Hyprland
+  # directory behavior used by the existing configuration.
   xdg.configFile."quickshell".source = ../config/quickshell;
-  xdg.configFile."hypr".source = ../config/hypr;
-  xdg.configFile."hypr".recursive = true;
+  xdg.configFile."hypr" = {
+    source = ../config/hypr;
+    recursive = true;
+  };
 
   programs.neovim = {
-    # package = nvim;
     enable = true;
     withRuby = false;
   };
@@ -40,92 +40,15 @@
       pull.rebase = true;
     };
   };
-  # configure options
-  # programs.noctalia-shell.enable = true;
-  # programs.noctalia-shell.settings = {
-  #   bar = {
-  #     widgets = {
-  #       left = [
-  #         { id = "Launcher"; }
-  #         { id = "Workspace"; }
-  #       ];
-  #       center = [
-  #         { id = "Clock"; }
-  #       ];
-  #       right = [
-  #         { id = "Tray"; }
-  #         {
-  #           id = "CustomButton";
-  #           icon = "wifi";
-  #           textCommand = "/home/fgsd/.local/bin/noctalia-net-status";
-  #           parseJson = true;
-  #           textIntervalMs = 5000;
-  #           maxTextLength = {
-  #             horizontal = 8;
-  #             vertical = 8;
-  #           };
-  #         }
-  #         {
-  #           id = "CustomButton";
-  #           icon = "bluetooth";
-  #           textCommand = "/home/fgsd/.local/bin/noctalia-bluetooth";
-  #           leftClickExec = "/home/fgsd/.local/bin/niri-run blueman-manager";
-  #           parseJson = true;
-  #           textIntervalMs = 5000;
-  #           maxTextLength = {
-  #             horizontal = 4;
-  #             vertical = 4;
-  #           };
-  #         }
-  #         { id = "Volume"; }
-  #         { id = "Brightness"; }
-  #         { id = "Battery"; }
-  #         {
-  #           id = "CustomButton";
-  #           icon = "gpu";
-  #           textCommand = "/home/fgsd/.local/bin/noctalia-gpu-mode";
-  #           leftClickExec = "/home/fgsd/.local/bin/noctalia-gpu-mode --menu";
-  #           leftClickUpdateText = true;
-  #           parseJson = true;
-  #           textIntervalMs = 5000;
-  #           maxTextLength = {
-  #             horizontal = 10;
-  #             vertical = 10;
-  #           };
-  #         }
-  #         {
-  #           id = "CustomButton";
-  #           icon = "shield";
-  #           textCommand = "/home/fgsd/.local/bin/noctalia-proxy-status";
-  #           parseJson = true;
-  #           textIntervalMs = 5000;
-  #           maxTextLength = {
-  #             horizontal = 6;
-  #             vertical = 6;
-  #           };
-  #         }
-  #         {
-  #           id = "CustomButton";
-  #           icon = "power";
-  #           textCommand = "/home/fgsd/.local/bin/noctalia-power";
-  #           leftClickExec = "niri msg action quit";
-  #           parseJson = true;
-  #           textIntervalMs = 60000;
-  #         }
-  #         { id = "NotificationHistory"; }
-  #         { id = "ControlCenter"; }
-  #       ];
-  #     };
-  #   };
-  # };
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "fgsd";
-  home.homeDirectory = "/home/fgsd";
+  home = {
+    username = "fgsd";
+    homeDirectory = "/home/fgsd";
+    stateVersion = "25.11";
+  };
 
   home.sessionVariables = {
-    # Wayland 优化与输入法环境变量
+    # Wayland and input-method environment variables.
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     GTK_IM_MODULE = "fcitx";
@@ -134,14 +57,13 @@
     GLFW_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     XIM_SERVERS = "fcitx";
-    # 修复 fcitx5 插件未被发现：让 GUI 会话能找到系统共享数据目录
-    XDG_DATA_DIRS = "/run/current-system/sw/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share";
+    XDG_DATA_DIRS = "/run/current-system/sw/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share";
     XDG_CONFIG_HOME = "/home/fgsd/.config";
     XDG_DATA_HOME = "/home/fgsd/.local/share";
     XDG_CACHE_HOME = "/home/fgsd/.cache";
     XDG_STATE_HOME = "/home/fgsd/.local/state";
 
-    # From End4's hyprland dotfiles
+    # Wayland desktop defaults inherited from the existing dotfiles.
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_QPA_PLATFORMTHEME = "kde";
@@ -149,91 +71,19 @@
     TERMINAL = "kitty -1";
     ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
-    # From QQ Group
     DISPLAY = ":0";
     XDG_CURRENT_DESKTOP = "hyprland";
     XDG_SESSION_TYPE = "wayland";
     GDK_BACKEND = "wayland";
 
-    # From MorningMC (NvidiaSupport)
+    # NVIDIA/Hyprland session variables.
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     AQ_NO_MODESET = "1";
-
-    # LD_LIBRARY
-    # LD_LIBRARY_PATH = "/run/current-system/sw/lib:/run/opengl-driver/lib";
-
-    # drivers path
     LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
-  };
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    #    (pkgs.python3.withPackages (ps: with ps; [ ps.pros-cli ]))
-    #    pkgs.gcc-arm-embedded
-    #    pkgs.openocd  # 用于调试
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/fgsd/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
