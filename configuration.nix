@@ -15,6 +15,7 @@
   hyprland,
   cachy,
   hypr,
+  drawingTabletPkg,
   ...
 }:
 
@@ -631,6 +632,7 @@
       reptyr
       psmisc
       codex
+      drawingTabletPkg
       gamescope
       mangohud
       (

@@ -14,6 +14,8 @@
       flake = false;
     };
 
+    drawing-tablet.url = "github:lemonxah/drawing_tablet";
+
     hyprland.url = "github:hyprwm/Hyprland";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -59,6 +61,7 @@
       # chaotic,
       nix-cachyos-kernel,
       nixpkgs-hypr,
+      drawing-tablet,
       ...
     }@inputs:
     let
@@ -103,6 +106,7 @@
       nHMM = inputs.noctalia.homeModules.default;
       nP = inputs.noctalia.packages.${system}.default;
       cachy = inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore-lto-x86_64-v3;
+      drawingTabletPkg = drawing-tablet.packages.${system}.drawing-tablet;
       hypr = pkgs-hypr.hyprland;
       hmSpecialArgs = {
         inherit
@@ -130,6 +134,7 @@
             nP
             nvim
             lutr
+            drawingTabletPkg
             hyprland
             cachy
             hypr
