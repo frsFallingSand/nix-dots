@@ -104,7 +104,64 @@
       nHMM = inputs.noctalia.homeModules.default;
       nP = inputs.noctalia.packages.${system}.default;
       cachy = inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore-lto-x86_64-v3;
-      drawingTabletPkg = drawing-tablet.packages.${system}.drawing-tablet;
+      # The upstream package forgets gst-plugins-ugly even though drawing-tablet
+      # creates pipelines containing x264enc. Add the missing plugin using the
+      # same nixpkgs/GStreamer ABI as the upstream drawing-tablet package.
+      drawingTabletPkg =
+        let
+          # Use drawing-tablet's own nixpkgs here so the added plugin has the
+          # same GStreamer ABI as the binary (the current package uses 1.26).
+          drawingPkgs = drawing-tablet.inputs.nixpkgs.legacyPackages.${system};
+          gst = drawingPkgs.gst_all_1;
+          upstream = drawing-tablet.packages.${system}.drawing-tablet;
+          nonGstreamerBuildInputs = pkgs.lib.filter (input:
+            let
+              name = input.pname or input.name or "";
+            in
+              !(pkgs.lib.hasPrefix "gstreamer" name
+                || pkgs.lib.hasPrefix "gst-plugins-base" name)
+          ) (upstream.buildInputs or [ ]);
+        in
+        upstream.overrideAttrs (old: {
+          buildInputs = nonGstreamerBuildInputs ++ [
+            gst.gstreamer
+            gst.gst-plugins-base
+            gst.gst-plugins-ugly
+          ];
+
+          # Replace the upstream wrapper: its hard-coded 1.26 plugin paths omit
+          # x264 and would also mix two different GStreamer ABIs.
+          postInstall = ''
+            mv $out/bin/dt-server $out/bin/drawing-tablet
+
+            install -Dm644 pkg/drawing-tablet.desktop \
+              $out/share/applications/drawing-tablet.desktop
+            install -Dm644 crates/dt-server/assets/icon.png \
+              $out/share/icons/hicolor/256x256/apps/drawing-tablet.png
+            install -Dm644 LICENSE $out/share/licenses/drawing-tablet/LICENSE
+            install -Dm644 README.md $out/share/doc/drawing-tablet/README.md
+
+            wrapProgram $out/bin/drawing-tablet \
+              --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \
+                "${pkgs.lib.makeSearchPath "lib/gstreamer-1.0" [
+                  # The default output is bin; coreelements (capsfilter, queue,
+                  # etc.) lives in out and is required for caps-filtered links.
+                  gst.gstreamer.out
+                  gst.gst-plugins-base
+                  gst.gst-plugins-good
+                  gst.gst-plugins-bad
+                  gst.gst-plugins-ugly
+                  gst.gst-vaapi
+                ]}" \
+              --prefix LD_LIBRARY_PATH : \
+                "${pkgs.lib.makeLibraryPath [
+                  pkgs.wayland
+                  pkgs.libxkbcommon
+                  pkgs.libglvnd
+                  pkgs.vulkan-loader
+                ]}"
+          '';
+        });
       hypr = pkgs-hypr.hyprland;
       hmSpecialArgs = {
         inherit

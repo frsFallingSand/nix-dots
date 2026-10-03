@@ -15,14 +15,14 @@
 
   programs.hyprland = {
     enable = true;
-    withUWSM = false;
+    withUWSM = true;
     xwayland.enable = true;
     # package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # package = hypr;
   };
 
   services.displayManager.gdm.enable = true;
-  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "hyprland-uwsm";
   services.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
 

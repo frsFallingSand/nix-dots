@@ -39,22 +39,19 @@
     memoryPercent = 50;
   };
 
+  # Hyprland already adds xdg-desktop-portal-hyprland through
+  # programs.hyprland. Keep GTK as the generic fallback and KDE available
+  # for the explicit FileChooser preference in the user's portals.conf.
+  # Do not select xdg-desktop-portal-wlr: it is not the correct backend
+  # for Hyprland and may fail to initialize screencasting.
   xdg.portal = {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gnome
       pkgs.kdePackages.xdg-desktop-portal-kde
     ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gnome
-      pkgs.kdePackages.xdg-desktop-portal-kde
-    ];
-    config.common.default = [ "wlr" ];
-    # 移除 gtk/kde 后端避免冲突
+    config.common.default = [ "hyprland" "gtk" ];
+    config.hyprland.default = [ "hyprland" "gtk" ];
   };
 
   programs.virt-manager.enable = true;

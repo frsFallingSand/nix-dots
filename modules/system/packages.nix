@@ -42,6 +42,9 @@
       eza
       microsoft-edge
       gnome-extension-manager
+      gst_all_1.gstreamer
+      # Install coreelements alongside the CLI tools (the default bin output).
+      gst_all_1.gstreamer.out
       gst_all_1.gst-plugins-base
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-bad
