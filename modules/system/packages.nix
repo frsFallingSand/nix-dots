@@ -1,8 +1,9 @@
-{ pkgs
-, nP
-, lutr
-, drawingTabletPkg
-, ...
+{
+  pkgs,
+  nP,
+  lutr,
+  drawingTabletPkg,
+  ...
 }:
 
 # System package profile.
@@ -254,6 +255,8 @@
       drawingTabletPkg
       gamescope
       mangohud
+      tcpdump
+      lftp
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
