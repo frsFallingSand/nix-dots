@@ -1,12 +1,9 @@
-{ dmsNixOSModule
-, ...
+{ ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    dmsNixOSModule
-
     # System modules are split by responsibility so hardware, desktop, services,
     # and package choices can be changed independently.
     ./modules/system/base.nix

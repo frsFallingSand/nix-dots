@@ -1,6 +1,5 @@
 {
   pkgs,
-  nP,
   lutr,
   drawingTabletPkg,
   ...
@@ -38,7 +37,6 @@
       hyprland-qt-support
       hyprland-workspaces-tui
       xwayland-satellite
-      # dmsDefaultPkg
       kitty
       eza
       microsoft-edge
@@ -156,7 +154,6 @@
       xdg-desktop-portal
       xdg-desktop-portal-gtk
       zenity
-      nP
       affine
       kdePackages.kirigami
       # javaPackages.compiler.openjdk17

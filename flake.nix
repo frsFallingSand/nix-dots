@@ -36,16 +36,6 @@
       url = "github:quickshell-mirror/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -97,12 +87,7 @@
       };
       nvim = pkgs-nvim.neovim-unwrapped;
       lutr = pkgs-lutris.lutris;
-      dmsNixOSModule = inputs.dms.nixosModules.default;
       nvimdotsHMModule = nvimdots.homeManagerModules.default;
-      quickshellPkg = quickshell.packages.${system}.quickshell;
-      dmsDefaultPkg = inputs.dms.packages.${system}.default;
-      nHMM = inputs.noctalia.homeModules.default;
-      nP = inputs.noctalia.packages.${system}.default;
       cachy = inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore-lto-x86_64-v3;
       # The upstream package forgets gst-plugins-ugly even though drawing-tablet
       # creates pipelines containing x264enc. Add the missing plugin using the
@@ -167,7 +152,6 @@
         inherit
           nvimdotsHMModule
           quickshell
-          nHMM
           nvim
           hyprland
           hypr
@@ -182,11 +166,7 @@
         specialArgs = {
           inherit
             quickshell
-            dmsNixOSModule
             nvimdotsHMModule
-            quickshellPkg
-            dmsDefaultPkg
-            nP
             nvim
             lutr
             drawingTabletPkg

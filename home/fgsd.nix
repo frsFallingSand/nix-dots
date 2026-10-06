@@ -1,12 +1,10 @@
 { nvimdotsHMModule
-, nHMM
 , ...
 }:
 
 {
   imports = [
     nvimdotsHMModule
-    nHMM
     ./desktop.nix
     ./packages.nix
     ./scripts.nix

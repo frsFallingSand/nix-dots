@@ -1,5 +1,4 @@
 { pkgs
-, quickshellPkg
 , ...
 }:
 
@@ -69,22 +68,4 @@
   #};
 
   programs.java.enable = true;
-
-  programs.dms-shell = {
-    enable = false;
-
-    quickshell.package = quickshellPkg;
-
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
-    };
-
-    enableSystemMonitoring = true;
-    enableVPN = true;
-    enableDynamicTheming = true;
-    enableAudioWavelength = true;
-    enableCalendarEvents = true;
-  };
-
 }
