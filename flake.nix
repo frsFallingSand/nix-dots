@@ -20,7 +20,7 @@
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/master";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     # nvimdots.url = "github:ayamir/nvimdots";
     # nvimdots.url = "github:frsfallingsand/nvimdots";
@@ -39,18 +39,19 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-nvim
-    , nixpkgs1
-    , hyprland
-    , home-manager
-    , quickshell
-    , nvimdots
-    , nix-cachyos-kernel
-    , nixpkgs-hypr
-    , drawing-tablet
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixpkgs-nvim,
+      nixpkgs1,
+      hyprland,
+      home-manager,
+      quickshell,
+      nvimdots,
+      nix-cachyos-kernel,
+      nixpkgs-hypr,
+      drawing-tablet,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -99,12 +100,12 @@
           drawingPkgs = drawing-tablet.inputs.nixpkgs.legacyPackages.${system};
           gst = drawingPkgs.gst_all_1;
           upstream = drawing-tablet.packages.${system}.drawing-tablet;
-          nonGstreamerBuildInputs = pkgs.lib.filter (input:
+          nonGstreamerBuildInputs = pkgs.lib.filter (
+            input:
             let
               name = input.pname or input.name or "";
             in
-              !(pkgs.lib.hasPrefix "gstreamer" name
-                || pkgs.lib.hasPrefix "gst-plugins-base" name)
+            !(pkgs.lib.hasPrefix "gstreamer" name || pkgs.lib.hasPrefix "gst-plugins-base" name)
           ) (upstream.buildInputs or [ ]);
         in
         upstream.overrideAttrs (old: {
@@ -128,23 +129,27 @@
 
             wrapProgram $out/bin/drawing-tablet \
               --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \
-                "${pkgs.lib.makeSearchPath "lib/gstreamer-1.0" [
-                  # The default output is bin; coreelements (capsfilter, queue,
-                  # etc.) lives in out and is required for caps-filtered links.
-                  gst.gstreamer.out
-                  gst.gst-plugins-base
-                  gst.gst-plugins-good
-                  gst.gst-plugins-bad
-                  gst.gst-plugins-ugly
-                  gst.gst-vaapi
-                ]}" \
+                "${
+                  pkgs.lib.makeSearchPath "lib/gstreamer-1.0" [
+                    # The default output is bin; coreelements (capsfilter, queue,
+                    # etc.) lives in out and is required for caps-filtered links.
+                    gst.gstreamer.out
+                    gst.gst-plugins-base
+                    gst.gst-plugins-good
+                    gst.gst-plugins-bad
+                    gst.gst-plugins-ugly
+                    gst.gst-vaapi
+                  ]
+                }" \
               --prefix LD_LIBRARY_PATH : \
-                "${pkgs.lib.makeLibraryPath [
-                  pkgs.wayland
-                  pkgs.libxkbcommon
-                  pkgs.libglvnd
-                  pkgs.vulkan-loader
-                ]}"
+                "${
+                  pkgs.lib.makeLibraryPath [
+                    pkgs.wayland
+                    pkgs.libxkbcommon
+                    pkgs.libglvnd
+                    pkgs.vulkan-loader
+                  ]
+                }"
           '';
         });
       hypr = pkgs-hypr.hyprland;
