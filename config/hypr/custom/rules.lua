@@ -5,7 +5,9 @@ hl.window_rule({ match = { class = "Axolotl.*" }, opacity = "1 1" })
 
 hl.workspace_rule({ workspace = "1", layout = "scrolling" })
 hl.workspace_rule({ workspace = "2", layout = "monocle" })
+hl.workspace_rule({ workspace = "3", layout = "scrolling" })
 hl.workspace_rule({ workspace = "7", layout = "master" })
+hl.workspace_rule({ workspace = "10", layout = "scrolling" })
 
 -- hl.window_rule({ match = { class = "Minecraft.*" }, confine_pointer = true })
 -- hl.window_rule({ match = { class = "Lunar.*" }, confine_pointer = true })
