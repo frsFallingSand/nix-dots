@@ -254,6 +254,7 @@
       mangohud
       tcpdump
       lftp
+      ayugram-desktop
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
