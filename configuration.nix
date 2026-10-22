@@ -1,4 +1,5 @@
-{ ...
+{
+  ...
 }:
 
 {
@@ -8,6 +9,7 @@
     # and package choices can be changed independently.
     ./modules/system/base.nix
     ./modules/system/hardware.nix
+    ./modules/system/security.nix
     ./modules/system/network.nix
     ./modules/system/desktop.nix
     ./modules/system/users.nix
