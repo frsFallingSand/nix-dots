@@ -255,6 +255,8 @@
       tcpdump
       lftp
       ayugram-desktop
+      warpd
+      kanata
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;

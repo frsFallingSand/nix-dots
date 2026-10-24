@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 # Local users, SSH, and host security defaults.
@@ -18,6 +19,7 @@
       "dialout"
       "trusted-users"
       "input"
+      "uinput"
       "disk" # 允许访问物理磁盘
     ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [

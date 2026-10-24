@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, cachy
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  cachy,
+  ...
 }:
 
 # Core boot, kernel, Nix, and low-level system defaults.
@@ -64,6 +65,8 @@
   virtualisation.vmware.guest.enable = true;
 
   services.logind.settings.Login.HandlePowerKey = "ignore";
+
+  hardware.uinput.enable = true;
 
   boot.kernelParams = [
     "intel_iommu=on"

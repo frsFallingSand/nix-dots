@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 # Power, portals, and application services.
@@ -50,8 +51,14 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.kdePackages.xdg-desktop-portal-kde
     ];
-    config.common.default = [ "hyprland" "gtk" ];
-    config.hyprland.default = [ "hyprland" "gtk" ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
+    config.hyprland.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 
   programs.virt-manager.enable = true;
@@ -77,5 +84,38 @@
       waveform
       wlrobs
     ];
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      internalKeyboard = {
+        # 空列表会让 Kanata 自动扫描并拦截本机所有接入的键盘
+        devices = [ ];
+
+        # 必须开启：让未被 defsrc 声明的其余所有按键正常直通
+        extraDefCfg = "process-unmapped-keys yes";
+
+        config = ''
+          (defsrc
+            caps h j k l w b u x
+          )
+
+          (defalias
+            ;; 短按 Esc，长按激活 nav 导航层
+            cap (tap-hold-press 200 200 esc (layer-toggle nav))
+          )
+
+          (deflayer base
+            @cap h j k l w b u x
+          )
+
+          ;; Vim 导航层
+          (deflayer nav
+            _    left down up right C-right C-left C-z del
+          )
+        '';
+      };
+    };
   };
 }
