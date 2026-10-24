@@ -98,19 +98,63 @@
 
         config = ''
           (defsrc
-            caps h j k l w b u x c
+            esc
+            1    2    3    4    5    6    7    8    9    0    -    =
+            tab  q    w    e    r    t    y    u    i    o    p    [    ]
+            caps a    s    d    f    g    h    j    k    l    ;    '    ret
+            z    x    c    v    b    n    m    ,    .    /
+            menu
           )
 
           (defalias
-            cap (tap-hold-press 200 200 esc (layer-toggle nav))
+            ;; 原 Esc 键：短按 Esc，长按激活 media (多媒体/亮度)
+            med-esc (tap-hold-press 200 200 esc (layer-toggle media))
+
+            ;; CapsLock 键：短按 Esc，长按激活 nav (Vim导航/F区)
+            nav-cap (tap-hold-press 200 200 esc (layer-toggle nav))
+
+            ;; 原 Menu 键：短按 Menu，长按激活 numpad (右手照片定制小键盘)
+            num-menu (tap-hold-press 200 200 menu (layer-toggle numpad))
           )
 
+          ;; ================= 1. 基础默认层 (Base Layer) =================
           (deflayer base
-            @cap h j k l w b u x c
+            @med-esc
+            1        2    3    4    5    6    7    8    9    0    -    =
+            tab      q    w    e    r    t    y    u    i    o    p    [    ]
+            @nav-cap a    s    d    f    g    h    j    k    l    ;    '    ret
+            z        x    c    v    b    n    m    ,    .    /
+            @num-menu
           )
 
+          ;; ================= 2. 导航与 F 功能区 (Nav Layer) =================
           (deflayer nav
-            _    left down up right C-right C-left C-z del caps
+            _
+            f1       f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+            _        _    C-right _ _    _    _    pgup pgdn _    _    _    _
+            _        home _    del  _    _    left down up   right _    _    _
+            _        _    caps _    _    _    end  C-left _    _
+            _
+          )
+
+          ;; ================= 3. 多媒体与屏幕亮度 (Media Layer) =================
+          (deflayer media
+            _
+            _        _    _    _    _    _    _    _    _    _    _    _
+            _        _    _    _    _    _    _    prev next pp   _    _    _
+            _        _    mute voldwn volu _  _    brdown brup _  _    _    _
+            _        _    _    _    _    _    _    _    _    _
+            _
+          )
+
+          ;; ================= 4. 右手定制小键盘 (NumPad Layer) =================
+          (deflayer numpad
+            _
+            _        _    _    _    _    _    _    7    8    9    kp/  _
+            _        _    _    _    _    _    _    _    4    5    6    kp-  kp+
+            _        _    _    _    _    _    _    _    1    2    3    kp*  kprt
+            _        _    _    _    _    _    _    0    kp.  kp/
+            _
           )
         '';
       };
