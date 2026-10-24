@@ -255,8 +255,25 @@
       tcpdump
       lftp
       ayugram-desktop
-      warpd
+      (pkgs.warpd.overrideAttrs (old: {
+        pname = "warpd-hyprland";
+        version = "git-pr341";
+        src = pkgs.fetchzip {
+          url = "https://github.com/rvaiya/warpd/archive/refs/pull/341/head.tar.gz";
+          hash = "sha256-u4DHzpUUodyKLmpz+6fBV8VIedpqMhBCYgYYqunv2H4=";
+        };
+        patches = [ ];
+        makeFlags = (old.makeFlags or [ ]) ++ [ "DISABLE_X=1" ];
+      }))
       kanata
+      (pkgs.wl-kbptr.overrideAttrs (old: {
+        src = pkgs.fetchFromGitHub {
+          owner = "moverest";
+          repo = "wl-kbptr";
+          rev = "6ef84f3";
+          hash = "sha256-nprdHawJqZK0zL0XcHuxmJquDLPKjl1z0rx5cRbkDe0=";
+        };
+      }))
       (
         let
           base = pkgs.appimageTools.defaultFhsEnvArgs;
