@@ -113,3 +113,13 @@ hl.bind("SUPER+Z", function()
 	-- 	icon = "ok",
 	-- })
 end)
+
+hl.bind("SUPER+Z", hl.dsp.exec_cmd("wl-kbptr -o modes=tile,click"))
+hl.bind("SUPER+SHIFT+Z", hl.dsp.exec_cmd("wl-kbptr -d -o modes=tile,click"))
+hl.bind("SUPER+ALT+Z", hl.dsp.exec_cmd("wl-kbptr -o modes=tile,bisect"))
+hl.bind("SUPER+ALT+SHIFT+Z", hl.dsp.exec_cmd("wl-kbptr -d -o modes=tile,bisect"))
+
+hl.bind("SUPER+SPACE", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,click -o mode_floating.source=detect"))
+hl.bind("SUPER+CTRL+SPACE", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,bisect,click -o mode_floating.source=detect"))
+
+hl.bind("SUPER+H", hl.dsp.exec_cmd("warpd --normal"))
