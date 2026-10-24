@@ -819,11 +819,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1788776692,
-        "narHash": "sha256-EK811PtxWPL7Du2lz8biQ0/JadVI3XFqKUpsor15QdQ=",
+        "lastModified": 1792812153,
+        "narHash": "sha256-BQKZc9l1R9Wc4oao9LAh665ystDyUFvQdWvTq36kEEw=",
         "owner": "frsfallingsand",
         "repo": "nvimdots",
-        "rev": "9f118f187f0292e1afad59d6b2b078a7d0970a33",
+        "rev": "ac71aeb23a73fdc39aeeb2cda07b4c1b3365635a",
         "type": "github"
       },
       "original": {
