@@ -100,7 +100,7 @@
           (defsrc
             esc
             1    2    3    4    5    6    7    8    9    0    -    =
-            tab  q    w    e    r    t    y    u    i    o    p    [    ]
+            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
             caps a    s    d    f    g    h    j    k    l    ;    '    ret
             z    x    c    v    b    n    m    ,    .    /
             menu
@@ -121,7 +121,7 @@
           (deflayer base
             @med-esc
             1        2    3    4    5    6    7    8    9    0    -    =
-            tab      q    w    e    r    t    y    u    i    o    p    [    ]
+            tab      q    w    e    r    t    y    u    i    o    p    [    ]    \
             @nav-cap a    s    d    f    g    h    j    k    l    ;    '    ret
             z        x    c    v    b    n    m    ,    .    /
             @num-menu
@@ -131,7 +131,7 @@
           (deflayer nav
             _
             f1       f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-            _        _    C-right _ _    _    _    pgup pgdn _    _    _    _
+            _        _    C-right _ _    _    _    pgup pgdn _    _    _    _    _
             _        home _    del  _    _    left down up   right _    _    _
             _        _    caps _    _    _    end  C-left _    _
             _
@@ -141,7 +141,7 @@
           (deflayer media
             _
             _        _    _    _    _    _    _    _    _    _    _    _
-            _        _    _    _    _    _    _    prev next pp   _    _    _
+            _        _    _    _    _    _    _    prev next pp   _    _    _    _
             _        _    mute voldwn volu _  _    brdown brup _  _    _    _
             _        _    _    _    _    _    _    _    _    _
             _
@@ -150,8 +150,8 @@
           ;; ================= 4. 右手定制小键盘 (NumPad Layer) =================
           (deflayer numpad
             _
-            _        _    _    _    _    _    _    7    8    9    kp/  _
-            _        _    _    _    _    _    _    _    4    5    6    kp-  kp+
+            _        _    _    _    _    _    _    _    _    7    8    9
+            _        _    _    _    _    _    _    _    _    4    5    6    kp-  kp+
             _        _    _    _    _    _    _    _    1    2    3    kp*  kprt
             _        _    _    _    _    _    _    0    kp.  kp/
             _
