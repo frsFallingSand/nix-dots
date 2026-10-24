@@ -98,21 +98,19 @@
 
         config = ''
           (defsrc
-            caps h j k l w b u x
+            caps h j k l w b u x c
           )
 
           (defalias
-            ;; 短按 Esc，长按激活 nav 导航层
             cap (tap-hold-press 200 200 esc (layer-toggle nav))
           )
 
           (deflayer base
-            @cap h j k l w b u x
+            @cap h j k l w b u x c
           )
 
-          ;; Vim 导航层
           (deflayer nav
-            _    left down up right C-right C-left C-z del
+            _    left down up right C-right C-left C-z del caps
           )
         '';
       };
