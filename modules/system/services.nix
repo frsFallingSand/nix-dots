@@ -98,7 +98,7 @@
 
         config = ''
           (defsrc
-            esc
+            esc  slck
             grv  1    2    3    4    5    6    7    8    9    0    -    =
             tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
             caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -113,7 +113,7 @@
             ;; CapsLock 键：短按 Esc，长按激活 nav (Vim导航/F区)
             nav-cap (tap-hold-press 200 200 esc (layer-toggle nav))
 
-            ;; 原 Menu 键：短按 Menu，长按激活 numpad (右手照片定制小键盘)
+            ;; 原 Menu 键：短按 Menu，长按激活 numpad (右手小键盘)
             num-menu (tap-hold-press 200 200 menu (layer-toggle numpad))
 
             ;; 滚轮动作定义：(mwheel-方向 间隔毫秒 刻度步长)
@@ -121,11 +121,14 @@
             ;; 50 代表长按时每 50ms 滚一格（每秒 20 格，速度顺滑适中）
             mwu (mwheel-up 50 120)
             mwd (mwheel-down 50 120)
+
+            to-game (layer-switch game)  ;; 切换到底层 game
+            to-base (layer-switch base)  ;; 切换到底层 base
           )
 
           ;; ================= 1. 基础默认层 (Base Layer) =================
           (deflayer base
-            @med-esc
+            @med-esc @to-game
             grv      1        2    3    4    5    6    7    8    9    0    -    =
             tab      q    w    e    r    t    y    u    i    o    p    [    ]    \
             @nav-cap a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -135,7 +138,7 @@
 
           ;; ================= 2. 导航与 F 功能区 (Nav Layer) =================
           (deflayer nav
-            mmid
+            mmid     slck
             mrgt     f1       f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
             mlft     _    C-right _ _    _    _    pgup pgdn _    _    _    _    _
             _        home @mwu    del  _    _    left down up   right _    _    _
@@ -145,7 +148,7 @@
 
           ;; ================= 3. 多媒体与屏幕亮度 (Media Layer) =================
           (deflayer media
-            _
+            _        _
             _        _        _    _    _    _    _    _    _    _    _    _    _
             _        _    _    _    _    _    _    prev next pp   _    _    _    _
             _        _    mute voldwn volu _  _    brdown brup _  _    _    _
@@ -155,12 +158,22 @@
 
           ;; ================= 4. 右手定制小键盘 (NumPad Layer) =================
           (deflayer numpad
-            _
+            _        _
             _        _        _    _    _    _    _    _    _    _    7    8    9
             _        _    _    _    _    _    _    _    _    4    5    6    kp-  kp+
             _        _    _    _    _    _    _    _    1    2    3    kp*  kprt
             _        _    _    _    _    _    _    0    kp.  kp/
             _
+          )
+
+          ;; 5. Game
+          (deflayer game
+            esc        @to-base
+            _        _        _    _    _    _    _    _    _    _    _    _    _
+            _        _    _    _    _    _    _    _   _ _   _    _    _    _
+            caps        _    _    _    _ _  _    _    _ _  _    _    _
+            _        _    _    _    _    _    _    _    _    _
+            menu
           )
         '';
       };
