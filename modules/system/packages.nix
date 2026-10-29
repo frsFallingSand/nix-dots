@@ -255,6 +255,9 @@
       tcpdump
       lftp
       ayugram-desktop
+      nftables
+      iptables
+      iproute2
       (pkgs.warpd.overrideAttrs (old: {
         pname = "warpd-hyprland";
         version = "git-pr341";

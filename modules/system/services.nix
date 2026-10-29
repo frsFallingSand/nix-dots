@@ -86,6 +86,15 @@
     ];
   };
 
+  services.cloudflare-warp.enable = true;
+  systemd.services.warp-svc = {
+    path = with pkgs; [
+      nftables
+      iptables
+      iproute2
+    ];
+  };
+
   services.kanata = {
     enable = true;
     keyboards = {
