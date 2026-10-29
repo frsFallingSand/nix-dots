@@ -44,6 +44,9 @@
     "kvm-amd"
     "kvm-intel"
     "vfio-pci"
+    "tun"
+    "nft_compat"
+    "nf_tables"
   ];
 
   boot.tmp.useTmpfs = true;
