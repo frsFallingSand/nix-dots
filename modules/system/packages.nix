@@ -258,6 +258,15 @@
       nftables
       iptables
       iproute2
+      (pkgs.mathematica.override {
+        versionInfo = {
+          version = "15.0.1";
+          lang = "en";
+          language = "English";
+          hash = "sha256-7N5FJoj0gTGNwY3Q+8hJGZi+ze6IRRMnwu6nLEv3cF4=";
+          installer = "Wolfram_15.0.1_LINUX.sh";
+        };
+      })
       (pkgs.warpd.overrideAttrs (old: {
         pname = "warpd-hyprland";
         version = "git-pr341";
