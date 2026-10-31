@@ -10,7 +10,7 @@
 
 {
   nixpkgs.config.problems.handlers = {
-    cups.broken = "warn";
+    libguestfs.broken = "warn";
   };
 
   nixpkgs.config.permittedInsecurePackages = [

@@ -30,7 +30,6 @@
       fish
       starship
       hyprland
-      hyprland-qtutils
       hyprland-protocols
       hyprland-workspaces
       hyprland-activewindow
