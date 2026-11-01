@@ -13,6 +13,44 @@
     libguestfs.broken = "warn";
   };
 
+  # VMware's external modules used to be copied by hand, so recent
+  # nixpkgs aggregateModules could not find vmmon.ko.cer/vmnet.ko.cer.
+  # Build and install them through Kbuild, which also produces the
+  # certificate files expected by the module aggregator.
+  nixpkgs.overlays = [
+    (final: prev: {
+      kernelPackagesExtensions = prev.kernelPackagesExtensions ++ [
+        (
+          finalKernelPackages: prevKernelPackages: {
+            vmware =
+              let
+                kernel = finalKernelPackages.kernel;
+                moduleMakeFlags = finalKernelPackages.kernelModuleMakeFlags;
+              in
+              prevKernelPackages.vmware.overrideAttrs (old: {
+                makeFlags = (old.makeFlags or [ ]) ++ moduleMakeFlags;
+                installPhase = ''
+                  runHook preInstall
+
+                  for module in vmmon vmnet; do
+                    make ${lib.escapeShellArgs moduleMakeFlags} \
+                      -C "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" \
+                      M="$PWD/$module-only" \
+                      INSTALL_MOD_PATH="$out" \
+                      INSTALL_MOD_DIR=misc \
+                      DEPMOD=true \
+                      modules_install
+                  done
+
+                  runHook postInstall
+                '';
+              });
+          }
+        )
+      ];
+    })
+  ];
+
   nixpkgs.config.permittedInsecurePackages = [
     # "electron-39.8.10"
     # "pnpm-9.15.9"
