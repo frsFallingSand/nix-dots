@@ -1,6 +1,7 @@
-{ lib
-, pkgs
-, ...
+{
+  lib,
+  pkgs,
+  ...
 }:
 
 # Docker, libvirt, VMware, and VM passthrough specialisations.
