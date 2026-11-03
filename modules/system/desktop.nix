@@ -90,15 +90,15 @@
     ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
     # From QQ Group
-    DISPLAY = ":0";
-    XDG_CURRENT_DESKTOP = "hyprland";
+    # DISPLAY = ":0";
+    # XDG_CURRENT_DESKTOP = "hyprland";
     XDG_SESSION_TYPE = "wayland";
     GDK_BACKEND = "wayland";
 
     # From MorningMC (NvidiaSupport)
     # LIBVA_DRIVER_NAME = "nvidia";
     # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    AQ_NO_MODESET = "1";
+    # AQ_NO_MODESET = "1";
 
     # LD_LIBRARY
     # LD_LIBRARY_PATH = [
@@ -107,7 +107,7 @@
     # ];
 
     # drivers path
-    LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
+    # LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
   };
 
   fonts = {

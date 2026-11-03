@@ -70,16 +70,16 @@
     TERMINAL = "kitty -1";
     ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
-    DISPLAY = ":0";
-    XDG_CURRENT_DESKTOP = "hyprland";
+    # DISPLAY = ":0";
+    # XDG_CURRENT_DESKTOP = "hyprland";
     XDG_SESSION_TYPE = "wayland";
     GDK_BACKEND = "wayland";
 
     # NVIDIA/Hyprland session variables.
     # LIBVA_DRIVER_NAME = "nvidia";
     # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    AQ_NO_MODESET = "1";
-    LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
+    # AQ_NO_MODESET = "1";
+    # LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
 
     EDITOR = "nvim";
   };
