@@ -1,6 +1,7 @@
-{ lib
-, pkgs
-, ...
+{
+  lib,
+  pkgs,
+  ...
 }:
 
 # Desktop, Wayland, session environment, and fonts.
@@ -95,8 +96,8 @@
     GDK_BACKEND = "wayland";
 
     # From MorningMC (NvidiaSupport)
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     AQ_NO_MODESET = "1";
 
     # LD_LIBRARY

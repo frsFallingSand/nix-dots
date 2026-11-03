@@ -1,5 +1,6 @@
-{ nvimdotsHMModule
-, ...
+{
+  nvimdotsHMModule,
+  ...
 }:
 
 {
@@ -75,8 +76,8 @@
     GDK_BACKEND = "wayland";
 
     # NVIDIA/Hyprland session variables.
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     AQ_NO_MODESET = "1";
     LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib";
 
