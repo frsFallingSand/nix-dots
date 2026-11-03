@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 # Graphics and NVIDIA configuration.
@@ -32,34 +33,6 @@
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
-    package =
-      let
-        gpioPatch =
-          drv:
-          drv.overrideAttrs (old: {
-            postPatch = (if (old.postPatch or null) == null then "" else old.postPatch) + ''
-              f=kernel-open/common/inc/nv-linux.h
-              [ -e "$f" ] || f=common/inc/nv-linux.h
-              substituteInPlace "$f" \
-                --replace-fail "struct gpio_chip *chip = gpio_device_get_chip(gdev);" \
-                               "struct gpio_chip *chip = gpio_device_get_chip((struct gpio_device *)gdev);"
-            '';
-          });
-        base = config.boot.kernelPackages.nvidiaPackages.latest;
-      in
-      base.overrideAttrs (old: {
-        postPatch = (if (old.postPatch or null) == null then "" else old.postPatch) + ''
-          f=kernel-open/common/inc/nv-linux.h
-          [ -e "$f" ] || f=common/inc/nv-linux.h
-          substituteInPlace "$f" \
-            --replace-fail "struct gpio_chip *chip = gpio_device_get_chip(gdev);" \
-                           "struct gpio_chip *chip = gpio_device_get_chip((struct gpio_device *)gdev);"
-        '';
-        passthru = (old.passthru or { }) // {
-          mod = gpioPatch base.mod;
-          open = gpioPatch base.open;
-        };
-      }); # package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.stable;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
 }
