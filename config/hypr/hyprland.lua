@@ -31,6 +31,9 @@ end
 if is_file_exists(HOME .. "/.config/hypr/custom/keybinds.lua") then
 	require("custom.keybinds")
 end
+if is_file_exists(HOME .. "/.config/hypr/custom/monitor.lua") then
+	require("custom.monitor")
+end
 
 -- nwg-displays support --
 if is_file_exists(HOME .. "/.config/hypr/workspaces.lua") then
