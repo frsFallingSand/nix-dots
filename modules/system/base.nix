@@ -20,33 +20,31 @@
   nixpkgs.overlays = [
     (final: prev: {
       kernelPackagesExtensions = prev.kernelPackagesExtensions ++ [
-        (
-          finalKernelPackages: prevKernelPackages: {
-            vmware =
-              let
-                kernel = finalKernelPackages.kernel;
-                moduleMakeFlags = finalKernelPackages.kernelModuleMakeFlags;
-              in
-              prevKernelPackages.vmware.overrideAttrs (old: {
-                makeFlags = (old.makeFlags or [ ]) ++ moduleMakeFlags;
-                installPhase = ''
-                  runHook preInstall
+        (finalKernelPackages: prevKernelPackages: {
+          vmware =
+            let
+              kernel = finalKernelPackages.kernel;
+              moduleMakeFlags = finalKernelPackages.kernelModuleMakeFlags;
+            in
+            prevKernelPackages.vmware.overrideAttrs (old: {
+              makeFlags = (old.makeFlags or [ ]) ++ moduleMakeFlags;
+              installPhase = ''
+                runHook preInstall
 
-                  for module in vmmon vmnet; do
-                    make ${lib.escapeShellArgs moduleMakeFlags} \
-                      -C "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" \
-                      M="$PWD/$module-only" \
-                      INSTALL_MOD_PATH="$out" \
-                      INSTALL_MOD_DIR=misc \
-                      DEPMOD=true \
-                      modules_install
-                  done
+                for module in vmmon vmnet; do
+                  make ${lib.escapeShellArgs moduleMakeFlags} \
+                    -C "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" \
+                    M="$PWD/$module-only" \
+                    INSTALL_MOD_PATH="$out" \
+                    INSTALL_MOD_DIR=misc \
+                    DEPMOD=true \
+                    modules_install
+                done
 
-                  runHook postInstall
-                '';
-              });
-          }
-        )
+                runHook postInstall
+              '';
+            });
+        })
       ];
     })
   ];
@@ -132,4 +130,8 @@
     "nix-command"
     "flakes"
   ];
+
+  nix.settings.substituters = [ "https://cache.lantian.pub/lantian" ];
+  nix.settings.trusted-public-keys = [ "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ=" ];
+
 }
