@@ -254,6 +254,9 @@
     nftables
     iptables
     iproute2
+    cairo
+    pango
+    nil
     (pkgs.mathematica.override {
       versionInfo = {
         version = "15.0.1";
