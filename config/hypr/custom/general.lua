@@ -21,4 +21,7 @@
 
 hl.config({
 	cursor = {},
+	input = {
+    follow_mouse = 2, -- FIXME: 暂时从 1 改为 2，避开 0.57 的 layer-shell 抢焦点 bug
+}
 })
