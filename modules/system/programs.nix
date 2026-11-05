@@ -17,6 +17,8 @@
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
+  programs.ydotool.enable = true;
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add common libraries that foreign binaries expect

@@ -20,6 +20,7 @@
       "trusted-users"
       "input"
       "uinput"
+      "ydotool"
       "disk" # 允许访问物理磁盘
     ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
