@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixpkgs-hypr = {
-      url = "github:nixos/nixpkgs?rev=b5aa0fbd538984f6e3d201be0005b4463d8b09f8";
+      url = "github:nixos/nixpkgs/nixos-unstable";
       flake = false;
     };
 
