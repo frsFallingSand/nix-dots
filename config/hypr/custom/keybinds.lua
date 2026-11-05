@@ -123,3 +123,47 @@ hl.bind("SUPER+SPACE", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,click -o mode
 hl.bind("SUPER+CTRL+SPACE", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,bisect,click -o mode_floating.source=detect"))
 
 hl.bind("SUPER+H", hl.dsp.exec_cmd("warpd --normal"))
+
+-- 设置 follow_mouse 并发送桌面通知
+local function set_follow_mouse(mode)
+	hl.config({
+		input = {
+			follow_mouse = mode,
+		},
+	})
+	hl.notification.create({
+		text = string.format("󰍽 follow_mouse: %d", mode),
+		timeout = 2000,
+		icon = "ok",
+	})
+	-- 设置完成后自动退出 submap 回到正常状态
+	hl.dispatch(hl.dsp.submap("reset"))
+end
+
+-- 1. 注册进入 submap 的前缀快捷键 (例如 SUPER + M)
+hl.bind("SUPER+CTRL+M", function()
+	hl.dispatch(hl.dsp.submap("mouse_mode"))
+	hl.notification.create({
+		text = "请按 [0 / 1 / 2 / 3] 设置鼠标聚焦模式 (Esc 取消)",
+		timeout = 2500,
+	})
+end, { description = "Enter follow_mouse submap" })
+
+-- 2. 定义 submap 内部的按键映射
+hl.define_submap("mouse_mode", function()
+	hl.bind("0", function()
+		set_follow_mouse(0)
+	end)
+	hl.bind("1", function()
+		set_follow_mouse(1)
+	end)
+	hl.bind("2", function()
+		set_follow_mouse(2)
+	end)
+	hl.bind("3", function()
+		set_follow_mouse(3)
+	end)
+
+	-- 按 Esc 取消并退出
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
