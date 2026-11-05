@@ -257,6 +257,32 @@
     cairo
     pango
     nil
+    (
+      let
+        # 封装一个如同 CLI 命令一般的 rapidocr 工具
+        rapidocr-cli =
+          pkgs.writers.writePython3Bin "rapidocr-cli"
+            {
+              libraries = [ pkgs.python3Packages.rapidocr-onnxruntime ];
+            }
+            ''
+              import sys
+              from rapidocr_onnxruntime import RapidOCR
+
+              if len(sys.argv) < 2:
+                  sys.exit(1)
+
+              # 初始化推理引擎（默认自带中英文通用 PP-OCRv4 模型）
+              engine = RapidOCR()
+              result, _ = engine(sys.argv[1])
+
+              # 如果有识别结果，将所有文本框的内容按换行拼接输出到 stdout
+              if result:
+                  print("\n".join(line[1] for line in result))
+            '';
+      in
+      rapidocr-cli
+    )
     (pkgs.mathematica.override {
       versionInfo = {
         version = "15.0.1";
